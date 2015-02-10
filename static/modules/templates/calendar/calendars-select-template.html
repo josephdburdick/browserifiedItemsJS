@@ -1,0 +1,8 @@
+<form class="events-filtering" data-bind="foreach: eventLists()">
+	<!--$data and $index are variables used by Knockout.-->
+	<!--"attr: { id: $index}" assigns the id of appearance in the loop as unique identifier of the HTML tag "id=".-->
+	<input role="filters" type="checkbox" class="checkbox" data-bind="visible: $parent.eventLists().length > 1 && ($parent.maxItems() > 10 || $parent.maxItems() == null), value: $index, checked: $parent.displayedCalendarsFilter, attr: { id: $index}">
+	<!--Context Binding Fix : Make sure the nested HTML element is not a self-closing tag. --> 
+		<label data-bind="visible: ($parent.eventLists().length > 1) && ($parent.maxItems() > 10 || $parent.maxItems() == null), text: $data.name(), attr: {for: $index}"></label>
+	</input>
+</form>

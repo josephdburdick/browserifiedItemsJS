@@ -1,0 +1,26 @@
+<div class="content-body people">
+    <div class="row-group summary people"><!-- people: 2-Column Text -->
+		<div class="row">
+		  <header class="rule">
+		      <h4 data-bind="text: name()"></h4>
+		    </header>
+		</div><!-- /.row -->
+		<div class="column-list">
+			<div class="col-2 text">
+				<div data-bind='visible: allPeople()[0].length == 0, text: $root.noResult'></div>
+				<!-- ko foreach: allpeople()[0] -->
+					<a data-bind="attr: {href: url()}" class="content-group">
+						<div class="body-text">
+							<header>
+								<h3 data-bind="text: name()"></h3> 
+							</header>
+							<p data-bind="text: jobTitle()"></p>					
+						</div><!-- /.body-text -->
+						<div class="clearfix"></div>				
+					</a> <!-- /.col -->
+				<!-- /ko -->
+			</div><!-- people grid 2 col text -->			
+		</div><!-- /.column-list -->
+		<!-- /people: 2-Column Text -->
+	</div>
+</div>

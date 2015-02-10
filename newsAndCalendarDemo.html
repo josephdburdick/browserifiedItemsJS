@@ -1,0 +1,145 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Yale - News & Calendar</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="static/modules/styles/main.css">
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <main class="container-fluid side-column-left">
+    <div class="row">
+        <article class="content-container">
+
+            <div id="event-content">
+                <span data-bind="template: 'event-details-template'"></span>
+            </div>
+            <div id="calendar-module-cal1">
+                <div id="calendar-navigation-cal1">
+                    <span data-bind="template: 'calendar-navigation-template-cal1'"></span>
+                </div>
+                <div id="calendar-search-options-cal1">
+                    <span data-bind="template: 'calendar-search-template-cal1'"></span>
+                </div>
+                <div id="calendar-filter-options-cal1">
+                    <span data-bind="template: 'calendar-select-template-cal1'"></span>
+                </div>
+                <div id="calendar-content-cal1">
+                    <!-- template behind is chosen by the layout -->
+                    <span data-bind="template: 'calendar-content-template-cal1'"></span>
+                </div>
+                <span class="calendar-setup-data" style="display: none">
+                [{"key":"cal1",
+                "displayStyle":"events-list-agenda",
+                "maxItems":20}]
+                </span>
+                <div class="calendar-setup-data-links">
+                    <a id="readMoreBaseLink-cal1" href="http://lemonde.fr" style="display: none"></a>
+                </div>
+            </div>
+           
+            <div id="calendar-module-2">
+                <div id="calendar-navigation-2">
+                    <span data-bind="template: 'calendar-navigation-template-2'"></span>
+                </div>
+                <div id="calendar-filter-options-2">
+                    <span data-bind="template: 'calendar-select-template-2'"></span>
+                </div>
+                <div id="calendar-search-options-2">
+                    <span data-bind="template: 'calendar-search-template-2'"></span>
+                </div>
+                <div id="calendar-content-2">
+                    <!-- template behind is chosen by the layout -->
+                    <span data-bind="template: 'calendar-content-template-2'"></span>
+                </div>
+                <span class="calendar-setup-data" style="display: none">
+                [{"key":"2",
+                "displayStyle":"events-table",
+                "maxItems":1,
+                "subDomain":"ysph"}]
+                </span>
+                <div class="calendar-setup-data-links">
+                    <a id="readMoreBaseLink-2" href="http://lemonde.fr" style="display: none"></a>
+                </div>
+            </div>
+
+             <div id="calendar-module-3">
+                <div id="calendar-navigation-3">
+                    <span data-bind="template: 'calendar-navigation-template-3'"></span>
+                </div>
+                <div id="calendar-filter-options-3">
+                    <span data-bind="template: 'calendar-select-template-3'"></span>
+                </div>
+                <div id="calendar-search-options-3">
+                    <span data-bind="template: 'calendar-search-template-3'"></span>
+                </div>
+                <div id="calendar-content-3">
+                    <!-- template behind is chosen by the layout -->
+                    <span data-bind="template: 'calendar-content-template-3'"></span>
+                </div>
+                <span class="calendar-setup-data" style="display: none">
+                [{"key":"3",
+                "displayStyle":"events-table",
+                "calAndEventUID": "1da4f391-167a-4437-8515-d9cb69a64727",
+                "maxItems":3,
+                "subDomain":"ysph"}]
+                </span>
+                <div class="calendar-setup-data-links">
+                    <a id="readMoreBaseLink-3" href="http://lemonde.fr" style="display: none"></a>
+                </div>
+            </div>
+           
+            <div id="news-module-news1">
+                <div id="news-overview-news1">
+                    <span data-bind="template: 'news-overview-template-news1'"></span>
+                </div>
+                <span class="news-setup-data" style="display: none">
+                    [{"key":"news1",
+                    "displayStyle":"news-2-col-thumbnails",
+                    "maxItems":5,
+                    "organizationId": "109082",
+                    "coreKeywordIds": "472"}]
+                </span>
+                <div class="news-setup-data-links">
+                    <a id="readMoreBaseLink-news1" 
+                    href="http://publichealth.yale.edu/news/archive/article.aspx?id=" 
+                    style="display: none"></a>
+                    <a id="keywordBaseLink-news1" href="http://ypms-service-a16.azurewebsites.net/" style="display: none"></a>
+                </div>
+            </div>
+          
+            <div id="news-module-news2">
+                <div id="news-overview-news2">
+                    <span data-bind="template: 'news-overview-template-news2'"></span>
+                </div>
+                <span class="news-setup-data" style="display: none">
+                    [{"key":"news2",
+                    "displayStyle":"news-combined",
+                    "maxItems":10,
+                    "organizationId": "109082",
+                    "coreKeywordIds": "472,308",
+                    "serviceUrlBase": "http://ypms-service-a22.azurewebsites.net"}]
+                </span>
+                <div class="news-setup-data-links">
+                    <a id="readMoreBaseLink-news2" 
+                    href="http://publichealth.yale.edu/news/archive/article.aspx?id=" 
+                    style="display: none"></a>
+                    <a id="keywordBaseLink-news2" href="http://ypms-service-a16.azurewebsites.net/" style="display: none"></a>
+                </div>
+            </div>
+
+        </article>
+    </main>
+</div>
+
+    <!--Call RequireJS and its configuration file (which will run the app)-->
+    <script data-main="static/modules/scripts/config.require.js" src="static/modules/scripts/vendor/require.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <title>Icon kit preview | gulp-svg-sprites</title>
+    <link href="css/sprite.css" rel="stylesheet" type="text/css" media="all"/>
+    <style type="text/css">@CHARSET "UTF-8";
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        padding: 0;
+        margin: 0;
+        color: #666;
+        background: #fafafa;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1em;
+        line-height: 1.4
+    }
+
+    header {
+        display: block;
+        padding: 3em 3em 2em 3em;
+        background-color: #fff
+    }
+
+    header p {
+        margin: 0 0 0 0;
+    }
+
+    nav {
+        font-size: .7em;
+        display: block;
+        width: 100%;
+        margin: 0 0 2em 0
+    }
+
+    nav a {
+        display: inline-block;
+        text-decoration: none;
+        margin-left: 2em;
+        color: #0f7595;
+        white-space: nowrap
+    }
+
+    nav a:hover {
+        text-decoration: underline
+    }
+
+    nav a.current {
+        font-weight: bold;
+        text-decoration: underline;
+        color: #666
+    }
+
+    section {
+        border-top: 1px solid #eee;
+        padding: 2em 3em 0 3em
+    }
+
+    ul {
+        margin: 0;
+        padding: 0
+    }
+
+    .icon-boxes li {
+        display: inline-block;
+        background-color: #fff;
+        position: relative;
+        margin: 0 2em 2em 0;
+        vertical-align: top;
+        border: 1px solid #ccc;
+        padding: 1em 1em 1em 1em;
+        cursor: default
+    }
+
+    .icon-box {
+        margin: 0;
+        width: 144px;
+        height: 144px;
+        position: relative;
+        background: #ccc url(data:image/gif;base64,R0lGODlhDAAMAIAAAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozQjk4OTI0MUY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozQjk4OTI0MkY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNCOTg5MjNGRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNCOTg5MjQwRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAAAwADAAAAhaEH6mHmmzcgzJAUG/NVGrfOZ8YLlABADs=) top left repeat;
+        border: 1px solid #ccc;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center
+    }
+    .icon-box.inverted {
+        background: black;
+    }
+
+    .icon {
+        display: inline;
+        display: inline-block
+    }
+
+    .snippet-popover {
+        position: absolute;
+        display: none;
+        opacity: 0;
+        bottom: 0;
+        left: 0;
+        background: white;
+        border: 1px solid #ccc;
+        padding: 16px;
+        z-index: 1;
+        transition: all .3s;
+    }
+    .snippet-popover.active {
+        display: block;
+        opacity: 1;
+    }
+
+    pre {
+        margin: 0;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        margin: 0;
+        padding: 5px 0;
+        font-size: 1em;
+        font-weight: normal;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    h4 {
+        margin: 0;
+    }
+
+    footer {
+        display: block;
+        margin: 0;
+        padding: 0 3em 3em 3em
+    }
+
+    footer p {
+        margin: 0;
+        font-size: .7em
+    }
+
+    footer a {
+        color: #0f7595;
+        margin-left: 0
+    }
+    </style>
+</head>
+<body>
+<header>
+    <h1 id="logo">Gulp SVG Sprites</h1>
+    <h4>Files Generated:</h4>
+    <ol>
+        <li><a href="css/sprite.css">css/sprite.css</a></li>
+        <li><a href="svg/sprite.svg">svg/sprite.svg</a></li>
+    </ol>
+    <h4>Usage:</h4>
+    <ol>
+        <li>
+            Include the <a href="css/sprite.css">CSS file</a> into your project.
+        </li>
+        <li>
+            Paste one of the snippets anywhere into your website.
+        </li>
+    </ol>
+</header>
+<section>
+    <nav><button onclick="toggleMode()">Toggle PNG/SVG</button> (showing <span id="mode-view">SVG</span>)<br><br><input type="range" onchange="setSize(this.value)" min="2" max="14"></nav>
+    <ul class="icon-boxes">
+        
+        
+<li title="audio_download">
+            <div class="icon-box" id="icon-box-audio_download">
+                <div class="icon audio_download"></div>
+            </div>
+            <h2>audio_download</h2>
+            <button onclick="showPopover('snippet-audio_download')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-audio_download')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-audio_download">
+                <pre><code>&lt;span class=&quot;icon audio_download&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="audio_volume">
+            <div class="icon-box" id="icon-box-audio_volume">
+                <div class="icon audio_volume"></div>
+            </div>
+            <h2>audio_volume</h2>
+            <button onclick="showPopover('snippet-audio_volume')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-audio_volume')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-audio_volume">
+                <pre><code>&lt;span class=&quot;icon audio_volume&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="chevron_down">
+            <div class="icon-box" id="icon-box-chevron_down">
+                <div class="icon chevron_down"></div>
+            </div>
+            <h2>chevron_down</h2>
+            <button onclick="showPopover('snippet-chevron_down')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-chevron_down')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-chevron_down">
+                <pre><code>&lt;span class=&quot;icon chevron_down&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="chevron_down-white">
+            <div class="icon-box" id="icon-box-chevron_down-white">
+                <div class="icon chevron_down-white"></div>
+            </div>
+            <h2>chevron_down-white</h2>
+            <button onclick="showPopover('snippet-chevron_down-white')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-chevron_down-white')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-chevron_down-white">
+                <pre><code>&lt;span class=&quot;icon chevron_down-white&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="chevron_left">
+            <div class="icon-box" id="icon-box-chevron_left">
+                <div class="icon chevron_left"></div>
+            </div>
+            <h2>chevron_left</h2>
+            <button onclick="showPopover('snippet-chevron_left')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-chevron_left')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-chevron_left">
+                <pre><code>&lt;span class=&quot;icon chevron_left&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="chevron_left-blue">
+            <div class="icon-box" id="icon-box-chevron_left-blue">
+                <div class="icon chevron_left-blue"></div>
+            </div>
+            <h2>chevron_left-blue</h2>
+            <button onclick="showPopover('snippet-chevron_left-blue')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-chevron_left-blue')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-chevron_left-blue">
+                <pre><code>&lt;span class=&quot;icon chevron_left-blue&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="chevron_right">
+            <div class="icon-box" id="icon-box-chevron_right">
+                <div class="icon chevron_right"></div>
+            </div>
+            <h2>chevron_right</h2>
+            <button onclick="showPopover('snippet-chevron_right')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-chevron_right')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-chevron_right">
+                <pre><code>&lt;span class=&quot;icon chevron_right&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="chevron_right-blue">
+            <div class="icon-box" id="icon-box-chevron_right-blue">
+                <div class="icon chevron_right-blue"></div>
+            </div>
+            <h2>chevron_right-blue</h2>
+            <button onclick="showPopover('snippet-chevron_right-blue')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-chevron_right-blue')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-chevron_right-blue">
+                <pre><code>&lt;span class=&quot;icon chevron_right-blue&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_apply">
+            <div class="icon-box" id="icon-box-circle_apply">
+                <div class="icon circle_apply"></div>
+            </div>
+            <h2>circle_apply</h2>
+            <button onclick="showPopover('snippet-circle_apply')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_apply')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_apply">
+                <pre><code>&lt;span class=&quot;icon circle_apply&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_appointment">
+            <div class="icon-box" id="icon-box-circle_appointment">
+                <div class="icon circle_appointment"></div>
+            </div>
+            <h2>circle_appointment</h2>
+            <button onclick="showPopover('snippet-circle_appointment')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_appointment')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_appointment">
+                <pre><code>&lt;span class=&quot;icon circle_appointment&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_audio">
+            <div class="icon-box" id="icon-box-circle_audio">
+                <div class="icon circle_audio"></div>
+            </div>
+            <h2>circle_audio</h2>
+            <button onclick="showPopover('snippet-circle_audio')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_audio')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_audio">
+                <pre><code>&lt;span class=&quot;icon circle_audio&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_calendar">
+            <div class="icon-box" id="icon-box-circle_calendar">
+                <div class="icon circle_calendar"></div>
+            </div>
+            <h2>circle_calendar</h2>
+            <button onclick="showPopover('snippet-circle_calendar')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_calendar')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_calendar">
+                <pre><code>&lt;span class=&quot;icon circle_calendar&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_chart">
+            <div class="icon-box" id="icon-box-circle_chart">
+                <div class="icon circle_chart"></div>
+            </div>
+            <h2>circle_chart</h2>
+            <button onclick="showPopover('snippet-circle_chart')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_chart')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_chart">
+                <pre><code>&lt;span class=&quot;icon circle_chart&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_clinical_trial">
+            <div class="icon-box" id="icon-box-circle_clinical_trial">
+                <div class="icon circle_clinical_trial"></div>
+            </div>
+            <h2>circle_clinical_trial</h2>
+            <button onclick="showPopover('snippet-circle_clinical_trial')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_clinical_trial')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_clinical_trial">
+                <pre><code>&lt;span class=&quot;icon circle_clinical_trial&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_contact">
+            <div class="icon-box" id="icon-box-circle_contact">
+                <div class="icon circle_contact"></div>
+            </div>
+            <h2>circle_contact</h2>
+            <button onclick="showPopover('snippet-circle_contact')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_contact')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_contact">
+                <pre><code>&lt;span class=&quot;icon circle_contact&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_directions">
+            <div class="icon-box" id="icon-box-circle_directions">
+                <div class="icon circle_directions"></div>
+            </div>
+            <h2>circle_directions</h2>
+            <button onclick="showPopover('snippet-circle_directions')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_directions')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_directions">
+                <pre><code>&lt;span class=&quot;icon circle_directions&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_donate">
+            <div class="icon-box" id="icon-box-circle_donate">
+                <div class="icon circle_donate"></div>
+            </div>
+            <h2>circle_donate</h2>
+            <button onclick="showPopover('snippet-circle_donate')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_donate')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_donate">
+                <pre><code>&lt;span class=&quot;icon circle_donate&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_download">
+            <div class="icon-box" id="icon-box-circle_download">
+                <div class="icon circle_download"></div>
+            </div>
+            <h2>circle_download</h2>
+            <button onclick="showPopover('snippet-circle_download')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_download')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_download">
+                <pre><code>&lt;span class=&quot;icon circle_download&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_facebook">
+            <div class="icon-box" id="icon-box-circle_facebook">
+                <div class="icon circle_facebook"></div>
+            </div>
+            <h2>circle_facebook</h2>
+            <button onclick="showPopover('snippet-circle_facebook')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_facebook')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_facebook">
+                <pre><code>&lt;span class=&quot;icon circle_facebook&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_facebook-white">
+            <div class="icon-box" id="icon-box-circle_facebook-white">
+                <div class="icon circle_facebook-white"></div>
+            </div>
+            <h2>circle_facebook-white</h2>
+            <button onclick="showPopover('snippet-circle_facebook-white')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_facebook-white')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_facebook-white">
+                <pre><code>&lt;span class=&quot;icon circle_facebook-white&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_general">
+            <div class="icon-box" id="icon-box-circle_general">
+                <div class="icon circle_general"></div>
+            </div>
+            <h2>circle_general</h2>
+            <button onclick="showPopover('snippet-circle_general')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_general')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_general">
+                <pre><code>&lt;span class=&quot;icon circle_general&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_image">
+            <div class="icon-box" id="icon-box-circle_image">
+                <div class="icon circle_image"></div>
+            </div>
+            <h2>circle_image</h2>
+            <button onclick="showPopover('snippet-circle_image')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_image')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_image">
+                <pre><code>&lt;span class=&quot;icon circle_image&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_links">
+            <div class="icon-box" id="icon-box-circle_links">
+                <div class="icon circle_links"></div>
+            </div>
+            <h2>circle_links</h2>
+            <button onclick="showPopover('snippet-circle_links')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_links')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_links">
+                <pre><code>&lt;span class=&quot;icon circle_links&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_mail">
+            <div class="icon-box" id="icon-box-circle_mail">
+                <div class="icon circle_mail"></div>
+            </div>
+            <h2>circle_mail</h2>
+            <button onclick="showPopover('snippet-circle_mail')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_mail')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_mail">
+                <pre><code>&lt;span class=&quot;icon circle_mail&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_play">
+            <div class="icon-box" id="icon-box-circle_play">
+                <div class="icon circle_play"></div>
+            </div>
+            <h2>circle_play</h2>
+            <button onclick="showPopover('snippet-circle_play')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_play')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_play">
+                <pre><code>&lt;span class=&quot;icon circle_play&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_play-white">
+            <div class="icon-box" id="icon-box-circle_play-white">
+                <div class="icon circle_play-white"></div>
+            </div>
+            <h2>circle_play-white</h2>
+            <button onclick="showPopover('snippet-circle_play-white')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_play-white')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_play-white">
+                <pre><code>&lt;span class=&quot;icon circle_play-white&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_profile">
+            <div class="icon-box" id="icon-box-circle_profile">
+                <div class="icon circle_profile"></div>
+            </div>
+            <h2>circle_profile</h2>
+            <button onclick="showPopover('snippet-circle_profile')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_profile')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_profile">
+                <pre><code>&lt;span class=&quot;icon circle_profile&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_publication">
+            <div class="icon-box" id="icon-box-circle_publication">
+                <div class="icon circle_publication"></div>
+            </div>
+            <h2>circle_publication</h2>
+            <button onclick="showPopover('snippet-circle_publication')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_publication')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_publication">
+                <pre><code>&lt;span class=&quot;icon circle_publication&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_register">
+            <div class="icon-box" id="icon-box-circle_register">
+                <div class="icon circle_register"></div>
+            </div>
+            <h2>circle_register</h2>
+            <button onclick="showPopover('snippet-circle_register')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_register')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_register">
+                <pre><code>&lt;span class=&quot;icon circle_register&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_search">
+            <div class="icon-box" id="icon-box-circle_search">
+                <div class="icon circle_search"></div>
+            </div>
+            <h2>circle_search</h2>
+            <button onclick="showPopover('snippet-circle_search')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_search')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_search">
+                <pre><code>&lt;span class=&quot;icon circle_search&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_share-1">
+            <div class="icon-box" id="icon-box-circle_share-1">
+                <div class="icon circle_share-1"></div>
+            </div>
+            <h2>circle_share-1</h2>
+            <button onclick="showPopover('snippet-circle_share-1')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_share-1')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_share-1">
+                <pre><code>&lt;span class=&quot;icon circle_share-1&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_share-2">
+            <div class="icon-box" id="icon-box-circle_share-2">
+                <div class="icon circle_share-2"></div>
+            </div>
+            <h2>circle_share-2</h2>
+            <button onclick="showPopover('snippet-circle_share-2')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_share-2')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_share-2">
+                <pre><code>&lt;span class=&quot;icon circle_share-2&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_twitter">
+            <div class="icon-box" id="icon-box-circle_twitter">
+                <div class="icon circle_twitter"></div>
+            </div>
+            <h2>circle_twitter</h2>
+            <button onclick="showPopover('snippet-circle_twitter')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_twitter')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_twitter">
+                <pre><code>&lt;span class=&quot;icon circle_twitter&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_twitter-white">
+            <div class="icon-box" id="icon-box-circle_twitter-white">
+                <div class="icon circle_twitter-white"></div>
+            </div>
+            <h2>circle_twitter-white</h2>
+            <button onclick="showPopover('snippet-circle_twitter-white')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_twitter-white')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_twitter-white">
+                <pre><code>&lt;span class=&quot;icon circle_twitter-white&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_video">
+            <div class="icon-box" id="icon-box-circle_video">
+                <div class="icon circle_video"></div>
+            </div>
+            <h2>circle_video</h2>
+            <button onclick="showPopover('snippet-circle_video')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_video')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_video">
+                <pre><code>&lt;span class=&quot;icon circle_video&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_youtube">
+            <div class="icon-box" id="icon-box-circle_youtube">
+                <div class="icon circle_youtube"></div>
+            </div>
+            <h2>circle_youtube</h2>
+            <button onclick="showPopover('snippet-circle_youtube')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_youtube')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_youtube">
+                <pre><code>&lt;span class=&quot;icon circle_youtube&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="circle_youtube-white">
+            <div class="icon-box" id="icon-box-circle_youtube-white">
+                <div class="icon circle_youtube-white"></div>
+            </div>
+            <h2>circle_youtube-white</h2>
+            <button onclick="showPopover('snippet-circle_youtube-white')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-circle_youtube-white')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-circle_youtube-white">
+                <pre><code>&lt;span class=&quot;icon circle_youtube-white&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="external_link">
+            <div class="icon-box" id="icon-box-external_link">
+                <div class="icon external_link"></div>
+            </div>
+            <h2>external_link</h2>
+            <button onclick="showPopover('snippet-external_link')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-external_link')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-external_link">
+                <pre><code>&lt;span class=&quot;icon external_link&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="external_link_arrow">
+            <div class="icon-box" id="icon-box-external_link_arrow">
+                <div class="icon external_link_arrow"></div>
+            </div>
+            <h2>external_link_arrow</h2>
+            <button onclick="showPopover('snippet-external_link_arrow')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-external_link_arrow')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-external_link_arrow">
+                <pre><code>&lt;span class=&quot;icon external_link_arrow&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="external_link_arrow-pumpkin">
+            <div class="icon-box" id="icon-box-external_link_arrow-pumpkin">
+                <div class="icon external_link_arrow-pumpkin"></div>
+            </div>
+            <h2>external_link_arrow-pumpkin</h2>
+            <button onclick="showPopover('snippet-external_link_arrow-pumpkin')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-external_link_arrow-pumpkin')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-external_link_arrow-pumpkin">
+                <pre><code>&lt;span class=&quot;icon external_link_arrow-pumpkin&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="external_link_arrow-rust">
+            <div class="icon-box" id="icon-box-external_link_arrow-rust">
+                <div class="icon external_link_arrow-rust"></div>
+            </div>
+            <h2>external_link_arrow-rust</h2>
+            <button onclick="showPopover('snippet-external_link_arrow-rust')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-external_link_arrow-rust')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-external_link_arrow-rust">
+                <pre><code>&lt;span class=&quot;icon external_link_arrow-rust&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="external_link_audio">
+            <div class="icon-box" id="icon-box-external_link_audio">
+                <div class="icon external_link_audio"></div>
+            </div>
+            <h2>external_link_audio</h2>
+            <button onclick="showPopover('snippet-external_link_audio')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-external_link_audio')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-external_link_audio">
+                <pre><code>&lt;span class=&quot;icon external_link_audio&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="external_link_doc">
+            <div class="icon-box" id="icon-box-external_link_doc">
+                <div class="icon external_link_doc"></div>
+            </div>
+            <h2>external_link_doc</h2>
+            <button onclick="showPopover('snippet-external_link_doc')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-external_link_doc')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-external_link_doc">
+                <pre><code>&lt;span class=&quot;icon external_link_doc&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="external_link_img">
+            <div class="icon-box" id="icon-box-external_link_img">
+                <div class="icon external_link_img"></div>
+            </div>
+            <h2>external_link_img</h2>
+            <button onclick="showPopover('snippet-external_link_img')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-external_link_img')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-external_link_img">
+                <pre><code>&lt;span class=&quot;icon external_link_img&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="external_link_pdf">
+            <div class="icon-box" id="icon-box-external_link_pdf">
+                <div class="icon external_link_pdf"></div>
+            </div>
+            <h2>external_link_pdf</h2>
+            <button onclick="showPopover('snippet-external_link_pdf')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-external_link_pdf')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-external_link_pdf">
+                <pre><code>&lt;span class=&quot;icon external_link_pdf&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="external_link_presentation">
+            <div class="icon-box" id="icon-box-external_link_presentation">
+                <div class="icon external_link_presentation"></div>
+            </div>
+            <h2>external_link_presentation</h2>
+            <button onclick="showPopover('snippet-external_link_presentation')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-external_link_presentation')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-external_link_presentation">
+                <pre><code>&lt;span class=&quot;icon external_link_presentation&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="external_link_spreadsheet">
+            <div class="icon-box" id="icon-box-external_link_spreadsheet">
+                <div class="icon external_link_spreadsheet"></div>
+            </div>
+            <h2>external_link_spreadsheet</h2>
+            <button onclick="showPopover('snippet-external_link_spreadsheet')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-external_link_spreadsheet')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-external_link_spreadsheet">
+                <pre><code>&lt;span class=&quot;icon external_link_spreadsheet&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="external_link_zip">
+            <div class="icon-box" id="icon-box-external_link_zip">
+                <div class="icon external_link_zip"></div>
+            </div>
+            <h2>external_link_zip</h2>
+            <button onclick="showPopover('snippet-external_link_zip')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-external_link_zip')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-external_link_zip">
+                <pre><code>&lt;span class=&quot;icon external_link_zip&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_apply">
+            <div class="icon-box" id="icon-box-icon_apply">
+                <div class="icon icon_apply"></div>
+            </div>
+            <h2>icon_apply</h2>
+            <button onclick="showPopover('snippet-icon_apply')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_apply')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_apply">
+                <pre><code>&lt;span class=&quot;icon icon_apply&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_appointment">
+            <div class="icon-box" id="icon-box-icon_appointment">
+                <div class="icon icon_appointment"></div>
+            </div>
+            <h2>icon_appointment</h2>
+            <button onclick="showPopover('snippet-icon_appointment')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_appointment')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_appointment">
+                <pre><code>&lt;span class=&quot;icon icon_appointment&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_arrow-down-blue">
+            <div class="icon-box" id="icon-box-icon_arrow-down-blue">
+                <div class="icon icon_arrow-down-blue"></div>
+            </div>
+            <h2>icon_arrow-down-blue</h2>
+            <button onclick="showPopover('snippet-icon_arrow-down-blue')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_arrow-down-blue')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_arrow-down-blue">
+                <pre><code>&lt;span class=&quot;icon icon_arrow-down-blue&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_arrow_down">
+            <div class="icon-box" id="icon-box-icon_arrow_down">
+                <div class="icon icon_arrow_down"></div>
+            </div>
+            <h2>icon_arrow_down</h2>
+            <button onclick="showPopover('snippet-icon_arrow_down')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_arrow_down')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_arrow_down">
+                <pre><code>&lt;span class=&quot;icon icon_arrow_down&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_audio">
+            <div class="icon-box" id="icon-box-icon_audio">
+                <div class="icon icon_audio"></div>
+            </div>
+            <h2>icon_audio</h2>
+            <button onclick="showPopover('snippet-icon_audio')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_audio')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_audio">
+                <pre><code>&lt;span class=&quot;icon icon_audio&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_audio-blue">
+            <div class="icon-box" id="icon-box-icon_audio-blue">
+                <div class="icon icon_audio-blue"></div>
+            </div>
+            <h2>icon_audio-blue</h2>
+            <button onclick="showPopover('snippet-icon_audio-blue')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_audio-blue')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_audio-blue">
+                <pre><code>&lt;span class=&quot;icon icon_audio-blue&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_audio-muted">
+            <div class="icon-box" id="icon-box-icon_audio-muted">
+                <div class="icon icon_audio-muted"></div>
+            </div>
+            <h2>icon_audio-muted</h2>
+            <button onclick="showPopover('snippet-icon_audio-muted')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_audio-muted')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_audio-muted">
+                <pre><code>&lt;span class=&quot;icon icon_audio-muted&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_audio-pause-white">
+            <div class="icon-box" id="icon-box-icon_audio-pause-white">
+                <div class="icon icon_audio-pause-white"></div>
+            </div>
+            <h2>icon_audio-pause-white</h2>
+            <button onclick="showPopover('snippet-icon_audio-pause-white')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_audio-pause-white')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_audio-pause-white">
+                <pre><code>&lt;span class=&quot;icon icon_audio-pause-white&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_btn-close-xl">
+            <div class="icon-box" id="icon-box-icon_btn-close-xl">
+                <div class="icon icon_btn-close-xl"></div>
+            </div>
+            <h2>icon_btn-close-xl</h2>
+            <button onclick="showPopover('snippet-icon_btn-close-xl')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_btn-close-xl')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_btn-close-xl">
+                <pre><code>&lt;span class=&quot;icon icon_btn-close-xl&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_calendar">
+            <div class="icon-box" id="icon-box-icon_calendar">
+                <div class="icon icon_calendar"></div>
+            </div>
+            <h2>icon_calendar</h2>
+            <button onclick="showPopover('snippet-icon_calendar')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_calendar')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_calendar">
+                <pre><code>&lt;span class=&quot;icon icon_calendar&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_chevron_subnav-right">
+            <div class="icon-box" id="icon-box-icon_chevron_subnav-right">
+                <div class="icon icon_chevron_subnav-right"></div>
+            </div>
+            <h2>icon_chevron_subnav-right</h2>
+            <button onclick="showPopover('snippet-icon_chevron_subnav-right')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_chevron_subnav-right')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_chevron_subnav-right">
+                <pre><code>&lt;span class=&quot;icon icon_chevron_subnav-right&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_chevron_subnav-right-blue">
+            <div class="icon-box" id="icon-box-icon_chevron_subnav-right-blue">
+                <div class="icon icon_chevron_subnav-right-blue"></div>
+            </div>
+            <h2>icon_chevron_subnav-right-blue</h2>
+            <button onclick="showPopover('snippet-icon_chevron_subnav-right-blue')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_chevron_subnav-right-blue')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_chevron_subnav-right-blue">
+                <pre><code>&lt;span class=&quot;icon icon_chevron_subnav-right-blue&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_clinical_trial">
+            <div class="icon-box" id="icon-box-icon_clinical_trial">
+                <div class="icon icon_clinical_trial"></div>
+            </div>
+            <h2>icon_clinical_trial</h2>
+            <button onclick="showPopover('snippet-icon_clinical_trial')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_clinical_trial')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_clinical_trial">
+                <pre><code>&lt;span class=&quot;icon icon_clinical_trial&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_contact">
+            <div class="icon-box" id="icon-box-icon_contact">
+                <div class="icon icon_contact"></div>
+            </div>
+            <h2>icon_contact</h2>
+            <button onclick="showPopover('snippet-icon_contact')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_contact')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_contact">
+                <pre><code>&lt;span class=&quot;icon icon_contact&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_directions">
+            <div class="icon-box" id="icon-box-icon_directions">
+                <div class="icon icon_directions"></div>
+            </div>
+            <h2>icon_directions</h2>
+            <button onclick="showPopover('snippet-icon_directions')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_directions')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_directions">
+                <pre><code>&lt;span class=&quot;icon icon_directions&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_donate">
+            <div class="icon-box" id="icon-box-icon_donate">
+                <div class="icon icon_donate"></div>
+            </div>
+            <h2>icon_donate</h2>
+            <button onclick="showPopover('snippet-icon_donate')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_donate')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_donate">
+                <pre><code>&lt;span class=&quot;icon icon_donate&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_expand">
+            <div class="icon-box" id="icon-box-icon_expand">
+                <div class="icon icon_expand"></div>
+            </div>
+            <h2>icon_expand</h2>
+            <button onclick="showPopover('snippet-icon_expand')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_expand')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_expand">
+                <pre><code>&lt;span class=&quot;icon icon_expand&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_expand-black">
+            <div class="icon-box" id="icon-box-icon_expand-black">
+                <div class="icon icon_expand-black"></div>
+            </div>
+            <h2>icon_expand-black</h2>
+            <button onclick="showPopover('snippet-icon_expand-black')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_expand-black')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_expand-black">
+                <pre><code>&lt;span class=&quot;icon icon_expand-black&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_expand-white">
+            <div class="icon-box" id="icon-box-icon_expand-white">
+                <div class="icon icon_expand-white"></div>
+            </div>
+            <h2>icon_expand-white</h2>
+            <button onclick="showPopover('snippet-icon_expand-white')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_expand-white')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_expand-white">
+                <pre><code>&lt;span class=&quot;icon icon_expand-white&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_facebook">
+            <div class="icon-box" id="icon-box-icon_facebook">
+                <div class="icon icon_facebook"></div>
+            </div>
+            <h2>icon_facebook</h2>
+            <button onclick="showPopover('snippet-icon_facebook')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_facebook')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_facebook">
+                <pre><code>&lt;span class=&quot;icon icon_facebook&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_facebook_feed">
+            <div class="icon-box" id="icon-box-icon_facebook_feed">
+                <div class="icon icon_facebook_feed"></div>
+            </div>
+            <h2>icon_facebook_feed</h2>
+            <button onclick="showPopover('snippet-icon_facebook_feed')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_facebook_feed')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_facebook_feed">
+                <pre><code>&lt;span class=&quot;icon icon_facebook_feed&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_gallery">
+            <div class="icon-box" id="icon-box-icon_gallery">
+                <div class="icon icon_gallery"></div>
+            </div>
+            <h2>icon_gallery</h2>
+            <button onclick="showPopover('snippet-icon_gallery')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_gallery')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_gallery">
+                <pre><code>&lt;span class=&quot;icon icon_gallery&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_gallery-white">
+            <div class="icon-box" id="icon-box-icon_gallery-white">
+                <div class="icon icon_gallery-white"></div>
+            </div>
+            <h2>icon_gallery-white</h2>
+            <button onclick="showPopover('snippet-icon_gallery-white')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_gallery-white')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_gallery-white">
+                <pre><code>&lt;span class=&quot;icon icon_gallery-white&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_image">
+            <div class="icon-box" id="icon-box-icon_image">
+                <div class="icon icon_image"></div>
+            </div>
+            <h2>icon_image</h2>
+            <button onclick="showPopover('snippet-icon_image')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_image')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_image">
+                <pre><code>&lt;span class=&quot;icon icon_image&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_image_expand">
+            <div class="icon-box" id="icon-box-icon_image_expand">
+                <div class="icon icon_image_expand"></div>
+            </div>
+            <h2>icon_image_expand</h2>
+            <button onclick="showPopover('snippet-icon_image_expand')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_image_expand')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_image_expand">
+                <pre><code>&lt;span class=&quot;icon icon_image_expand&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_link">
+            <div class="icon-box" id="icon-box-icon_link">
+                <div class="icon icon_link"></div>
+            </div>
+            <h2>icon_link</h2>
+            <button onclick="showPopover('snippet-icon_link')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_link')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_link">
+                <pre><code>&lt;span class=&quot;icon icon_link&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_link-blue">
+            <div class="icon-box" id="icon-box-icon_link-blue">
+                <div class="icon icon_link-blue"></div>
+            </div>
+            <h2>icon_link-blue</h2>
+            <button onclick="showPopover('snippet-icon_link-blue')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_link-blue')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_link-blue">
+                <pre><code>&lt;span class=&quot;icon icon_link-blue&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_link-gold">
+            <div class="icon-box" id="icon-box-icon_link-gold">
+                <div class="icon icon_link-gold"></div>
+            </div>
+            <h2>icon_link-gold</h2>
+            <button onclick="showPopover('snippet-icon_link-gold')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_link-gold')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_link-gold">
+                <pre><code>&lt;span class=&quot;icon icon_link-gold&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_link-pumpkin">
+            <div class="icon-box" id="icon-box-icon_link-pumpkin">
+                <div class="icon icon_link-pumpkin"></div>
+            </div>
+            <h2>icon_link-pumpkin</h2>
+            <button onclick="showPopover('snippet-icon_link-pumpkin')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_link-pumpkin')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_link-pumpkin">
+                <pre><code>&lt;span class=&quot;icon icon_link-pumpkin&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_link-rust">
+            <div class="icon-box" id="icon-box-icon_link-rust">
+                <div class="icon icon_link-rust"></div>
+            </div>
+            <h2>icon_link-rust</h2>
+            <button onclick="showPopover('snippet-icon_link-rust')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_link-rust')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_link-rust">
+                <pre><code>&lt;span class=&quot;icon icon_link-rust&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_mail">
+            <div class="icon-box" id="icon-box-icon_mail">
+                <div class="icon icon_mail"></div>
+            </div>
+            <h2>icon_mail</h2>
+            <button onclick="showPopover('snippet-icon_mail')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_mail')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_mail">
+                <pre><code>&lt;span class=&quot;icon icon_mail&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_minus">
+            <div class="icon-box" id="icon-box-icon_minus">
+                <div class="icon icon_minus"></div>
+            </div>
+            <h2>icon_minus</h2>
+            <button onclick="showPopover('snippet-icon_minus')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_minus')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_minus">
+                <pre><code>&lt;span class=&quot;icon icon_minus&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_minus-blue">
+            <div class="icon-box" id="icon-box-icon_minus-blue">
+                <div class="icon icon_minus-blue"></div>
+            </div>
+            <h2>icon_minus-blue</h2>
+            <button onclick="showPopover('snippet-icon_minus-blue')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_minus-blue')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_minus-blue">
+                <pre><code>&lt;span class=&quot;icon icon_minus-blue&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_minus-gray">
+            <div class="icon-box" id="icon-box-icon_minus-gray">
+                <div class="icon icon_minus-gray"></div>
+            </div>
+            <h2>icon_minus-gray</h2>
+            <button onclick="showPopover('snippet-icon_minus-gray')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_minus-gray')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_minus-gray">
+                <pre><code>&lt;span class=&quot;icon icon_minus-gray&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_minus-white">
+            <div class="icon-box" id="icon-box-icon_minus-white">
+                <div class="icon icon_minus-white"></div>
+            </div>
+            <h2>icon_minus-white</h2>
+            <button onclick="showPopover('snippet-icon_minus-white')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_minus-white')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_minus-white">
+                <pre><code>&lt;span class=&quot;icon icon_minus-white&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_parking">
+            <div class="icon-box" id="icon-box-icon_parking">
+                <div class="icon icon_parking"></div>
+            </div>
+            <h2>icon_parking</h2>
+            <button onclick="showPopover('snippet-icon_parking')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_parking')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_parking">
+                <pre><code>&lt;span class=&quot;icon icon_parking&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_phone">
+            <div class="icon-box" id="icon-box-icon_phone">
+                <div class="icon icon_phone"></div>
+            </div>
+            <h2>icon_phone</h2>
+            <button onclick="showPopover('snippet-icon_phone')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_phone')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_phone">
+                <pre><code>&lt;span class=&quot;icon icon_phone&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_play">
+            <div class="icon-box" id="icon-box-icon_play">
+                <div class="icon icon_play"></div>
+            </div>
+            <h2>icon_play</h2>
+            <button onclick="showPopover('snippet-icon_play')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_play')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_play">
+                <pre><code>&lt;span class=&quot;icon icon_play&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_play--white">
+            <div class="icon-box" id="icon-box-icon_play--white">
+                <div class="icon icon_play--white"></div>
+            </div>
+            <h2>icon_play--white</h2>
+            <button onclick="showPopover('snippet-icon_play--white')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_play--white')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_play--white">
+                <pre><code>&lt;span class=&quot;icon icon_play--white&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_plus">
+            <div class="icon-box" id="icon-box-icon_plus">
+                <div class="icon icon_plus"></div>
+            </div>
+            <h2>icon_plus</h2>
+            <button onclick="showPopover('snippet-icon_plus')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_plus')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_plus">
+                <pre><code>&lt;span class=&quot;icon icon_plus&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_plus-blue">
+            <div class="icon-box" id="icon-box-icon_plus-blue">
+                <div class="icon icon_plus-blue"></div>
+            </div>
+            <h2>icon_plus-blue</h2>
+            <button onclick="showPopover('snippet-icon_plus-blue')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_plus-blue')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_plus-blue">
+                <pre><code>&lt;span class=&quot;icon icon_plus-blue&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_plus-gray">
+            <div class="icon-box" id="icon-box-icon_plus-gray">
+                <div class="icon icon_plus-gray"></div>
+            </div>
+            <h2>icon_plus-gray</h2>
+            <button onclick="showPopover('snippet-icon_plus-gray')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_plus-gray')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_plus-gray">
+                <pre><code>&lt;span class=&quot;icon icon_plus-gray&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_plus-white">
+            <div class="icon-box" id="icon-box-icon_plus-white">
+                <div class="icon icon_plus-white"></div>
+            </div>
+            <h2>icon_plus-white</h2>
+            <button onclick="showPopover('snippet-icon_plus-white')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_plus-white')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_plus-white">
+                <pre><code>&lt;span class=&quot;icon icon_plus-white&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_print">
+            <div class="icon-box" id="icon-box-icon_print">
+                <div class="icon icon_print"></div>
+            </div>
+            <h2>icon_print</h2>
+            <button onclick="showPopover('snippet-icon_print')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_print')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_print">
+                <pre><code>&lt;span class=&quot;icon icon_print&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_profile">
+            <div class="icon-box" id="icon-box-icon_profile">
+                <div class="icon icon_profile"></div>
+            </div>
+            <h2>icon_profile</h2>
+            <button onclick="showPopover('snippet-icon_profile')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_profile')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_profile">
+                <pre><code>&lt;span class=&quot;icon icon_profile&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_register">
+            <div class="icon-box" id="icon-box-icon_register">
+                <div class="icon icon_register"></div>
+            </div>
+            <h2>icon_register</h2>
+            <button onclick="showPopover('snippet-icon_register')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_register')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_register">
+                <pre><code>&lt;span class=&quot;icon icon_register&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_replay">
+            <div class="icon-box" id="icon-box-icon_replay">
+                <div class="icon icon_replay"></div>
+            </div>
+            <h2>icon_replay</h2>
+            <button onclick="showPopover('snippet-icon_replay')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_replay')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_replay">
+                <pre><code>&lt;span class=&quot;icon icon_replay&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_search">
+            <div class="icon-box" id="icon-box-icon_search">
+                <div class="icon icon_search"></div>
+            </div>
+            <h2>icon_search</h2>
+            <button onclick="showPopover('snippet-icon_search')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_search')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_search">
+                <pre><code>&lt;span class=&quot;icon icon_search&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_street_view">
+            <div class="icon-box" id="icon-box-icon_street_view">
+                <div class="icon icon_street_view"></div>
+            </div>
+            <h2>icon_street_view</h2>
+            <button onclick="showPopover('snippet-icon_street_view')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_street_view')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_street_view">
+                <pre><code>&lt;span class=&quot;icon icon_street_view&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_twitter">
+            <div class="icon-box" id="icon-box-icon_twitter">
+                <div class="icon icon_twitter"></div>
+            </div>
+            <h2>icon_twitter</h2>
+            <button onclick="showPopover('snippet-icon_twitter')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_twitter')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_twitter">
+                <pre><code>&lt;span class=&quot;icon icon_twitter&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_video">
+            <div class="icon-box" id="icon-box-icon_video">
+                <div class="icon icon_video"></div>
+            </div>
+            <h2>icon_video</h2>
+            <button onclick="showPopover('snippet-icon_video')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_video')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_video">
+                <pre><code>&lt;span class=&quot;icon icon_video&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="icon_x">
+            <div class="icon-box" id="icon-box-icon_x">
+                <div class="icon icon_x"></div>
+            </div>
+            <h2>icon_x</h2>
+            <button onclick="showPopover('snippet-icon_x')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-icon_x')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-icon_x">
+                <pre><code>&lt;span class=&quot;icon icon_x&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="loading">
+            <div class="icon-box" id="icon-box-loading">
+                <div class="icon loading"></div>
+            </div>
+            <h2>loading</h2>
+            <button onclick="showPopover('snippet-loading')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-loading')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-loading">
+                <pre><code>&lt;span class=&quot;icon loading&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="map_pin">
+            <div class="icon-box" id="icon-box-map_pin">
+                <div class="icon map_pin"></div>
+            </div>
+            <h2>map_pin</h2>
+            <button onclick="showPopover('snippet-map_pin')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-map_pin')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-map_pin">
+                <pre><code>&lt;span class=&quot;icon map_pin&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="pagination_first-page">
+            <div class="icon-box" id="icon-box-pagination_first-page">
+                <div class="icon pagination_first-page"></div>
+            </div>
+            <h2>pagination_first-page</h2>
+            <button onclick="showPopover('snippet-pagination_first-page')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-pagination_first-page')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-pagination_first-page">
+                <pre><code>&lt;span class=&quot;icon pagination_first-page&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="pagination_last-page">
+            <div class="icon-box" id="icon-box-pagination_last-page">
+                <div class="icon pagination_last-page"></div>
+            </div>
+            <h2>pagination_last-page</h2>
+            <button onclick="showPopover('snippet-pagination_last-page')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-pagination_last-page')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-pagination_last-page">
+                <pre><code>&lt;span class=&quot;icon pagination_last-page&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="pagination_next-page">
+            <div class="icon-box" id="icon-box-pagination_next-page">
+                <div class="icon pagination_next-page"></div>
+            </div>
+            <h2>pagination_next-page</h2>
+            <button onclick="showPopover('snippet-pagination_next-page')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-pagination_next-page')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-pagination_next-page">
+                <pre><code>&lt;span class=&quot;icon pagination_next-page&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="pagination_previous-page">
+            <div class="icon-box" id="icon-box-pagination_previous-page">
+                <div class="icon pagination_previous-page"></div>
+            </div>
+            <h2>pagination_previous-page</h2>
+            <button onclick="showPopover('snippet-pagination_previous-page')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-pagination_previous-page')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-pagination_previous-page">
+                <pre><code>&lt;span class=&quot;icon pagination_previous-page&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="subnav_arrow">
+            <div class="icon-box" id="icon-box-subnav_arrow">
+                <div class="icon subnav_arrow"></div>
+            </div>
+            <h2>subnav_arrow</h2>
+            <button onclick="showPopover('snippet-subnav_arrow')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-subnav_arrow')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-subnav_arrow">
+                <pre><code>&lt;span class=&quot;icon subnav_arrow&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="subnav_arrow-dark">
+            <div class="icon-box" id="icon-box-subnav_arrow-dark">
+                <div class="icon subnav_arrow-dark"></div>
+            </div>
+            <h2>subnav_arrow-dark</h2>
+            <button onclick="showPopover('snippet-subnav_arrow-dark')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-subnav_arrow-dark')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-subnav_arrow-dark">
+                <pre><code>&lt;span class=&quot;icon subnav_arrow-dark&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="subnav_arrow_white">
+            <div class="icon-box" id="icon-box-subnav_arrow_white">
+                <div class="icon subnav_arrow_white"></div>
+            </div>
+            <h2>subnav_arrow_white</h2>
+            <button onclick="showPopover('snippet-subnav_arrow_white')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-subnav_arrow_white')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-subnav_arrow_white">
+                <pre><code>&lt;span class=&quot;icon subnav_arrow_white&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="text_bigger">
+            <div class="icon-box" id="icon-box-text_bigger">
+                <div class="icon text_bigger"></div>
+            </div>
+            <h2>text_bigger</h2>
+            <button onclick="showPopover('snippet-text_bigger')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-text_bigger')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-text_bigger">
+                <pre><code>&lt;span class=&quot;icon text_bigger&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="text_normal">
+            <div class="icon-box" id="icon-box-text_normal">
+                <div class="icon text_normal"></div>
+            </div>
+            <h2>text_normal</h2>
+            <button onclick="showPopover('snippet-text_normal')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-text_normal')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-text_normal">
+                <pre><code>&lt;span class=&quot;icon text_normal&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="text_smaller">
+            <div class="icon-box" id="icon-box-text_smaller">
+                <div class="icon text_smaller"></div>
+            </div>
+            <h2>text_smaller</h2>
+            <button onclick="showPopover('snippet-text_smaller')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-text_smaller')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-text_smaller">
+                <pre><code>&lt;span class=&quot;icon text_smaller&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="ysm_shield">
+            <div class="icon-box" id="icon-box-ysm_shield">
+                <div class="icon ysm_shield"></div>
+            </div>
+            <h2>ysm_shield</h2>
+            <button onclick="showPopover('snippet-ysm_shield')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-ysm_shield')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-ysm_shield">
+                <pre><code>&lt;span class=&quot;icon ysm_shield&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+        
+<li title="ysm_wordmark">
+            <div class="icon-box" id="icon-box-ysm_wordmark">
+                <div class="icon ysm_wordmark"></div>
+            </div>
+            <h2>ysm_wordmark</h2>
+            <button onclick="showPopover('snippet-ysm_wordmark')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-ysm_wordmark')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-ysm_wordmark">
+                <pre><code>&lt;span class=&quot;icon ysm_wordmark&quot;&gt;&lt;/span&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+        
+</ul>
+</section>
+<footer>
+    <p>Generated by <a href="https://github.com/shakyshane/gulp-svg-sprites">Gulp Svg Sprites</a> - Preview page courtesy of <a href="http://iconizr.com" target="_blank">iconizr</a>.</p>
+</footer>
+
+<script type="text/javascript">
+
+    var openSnippet;
+    var modeView = document.getElementById("mode-view");
+    var icons = document.querySelectorAll(".icon");
+
+    function setSize (fontSize) {
+        for (var i = 0; i < icons.length; i++) {
+            icons[i].style.fontSize = fontSize + 'px';
+        }
+    }
+
+    function showPopover(id) {
+        openSnippet = document.getElementById(id);
+        openSnippet.classList.add("active");
+    }
+    function hidePopover() {
+
+        openSnippet.classList.remove("active");
+    }
+    function invertBackground(id) {
+        var elem = document.getElementById(id);
+        elem.classList.toggle("inverted");
+    }
+    function toggleMode() {
+        document.body.classList.toggle("no-svg") ?
+            modeView.innerHTML = "PNG" :
+            modeView.innerHTML = "SVG";
+    }
+</script>
+</body>
+</html>

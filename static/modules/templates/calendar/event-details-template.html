@@ -1,0 +1,124 @@
+<!-- TODO use this when having bootstrap 
+<div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="popup" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+            <h4 class="modal-title" id="myModalLabel">Event Details</h4>
+            </div>
+            <div class="modal-body event-details">
+              content div event-details here !!!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+-->
+
+
+<div id="popup">
+  <!-- options to have more control over the layout of the dialog popup -->
+  <div class='popup-content' data-bind="dialog: { autoOpen: false, isOpen: isPopupOpen, modal: true, width: 600, height: 300, open: function (event, ui) { $('.ui-dialog').addClass('override'); $('#popup').addClass('override');} }, PopupVisibilityChange: isPopupOpen">
+    <div class="event-details">
+      <h1 class="event-name" data-bind="text: name()"></h1>
+      <table>
+        <tbody>
+          <tr>
+              <td><p class="event-key" data-bind="text: $root.dateLabel"></p></td>
+              <td><p><span data-bind="text: formattedDay()"></span></p></td>
+          </tr>
+          <tr>
+              <td><p class="event-key" data-bind="text: $root.timeLabel"></p></td>
+              <td><p><span class="event-time" data-bind="text: formattedTime()"></span></p></td>
+          </tr>
+          <tr>
+              <td><p class="event-key" data-bind="text: $root.statusLabel"></p></td>
+              <td><p><span class="event-status" data-bind="text: status()"></span></p></td>
+          </tr>
+          <tr data-bind="visible: tags() != null">
+              <td><p class="event-key" data-bind="text: $root.tagsLabel"></p></td>
+              <td><p><span class="event-tags" data-bind="text: formattedTags()"></span></p></td>
+          </tr>
+          <tr data-bind="visible: location.addressDetails.shortLocationName() != null">
+              <td><p class="event-key" data-bind="text: $root.locationLabel"></p></td>
+              <td>
+                <p>
+                  <span class="event-shortlocationname" data-bind="text: location.addressDetails.shortLocationName()"></span><br/>
+                  <span  class="event-streetaddress" data-bind="visible: location.addressDetails.streetAddress() != null, text: location.addressDetails.streetAddress()"></span><br/>
+                  <span class="event-addresscity" data-bind="visible: location.addressDetails.addressCity() != null, text: location.addressDetails.addressCity() "></span> <span data-bind="visible: location.addressDetails.addressRegion() != null, text: location.addressDetails.addressRegion()"></span><br/>
+                  <span class="event-postalcode" data-bind="visible: location.addressDetails.postalCode() != null, text: location.addressDetails.postalCode()"></span>
+                </p>
+              </td>
+          </tr>
+          <tr data-bind="visible: website() != null">
+              <td><p class="event-key" data-bind="text: $root.websiteLabel"></p></td>
+              <td><p><span class="event-website" data-bind="text: website()"></span></p></td>
+          </tr>
+          <tr data-bind="visible: performer.givenName() != null">
+              <td><p class="event-key" data-bind="text: $root.speakerLabel"></p></td>
+              <td>
+                <p>
+                  <a class="event-performer" data-bind="attr: { href: performer.profileUrl() }"><span data-bind="text: performer.givenName()"></span></a><br/>
+                  <span class="event-performerjob" data-bind="visible: performer.jobTitle() != null, text: performer.jobTitle()"></span><br/>
+                  <span class="event-performerdepartment" data-bind="visible: performer.memberOf.department() != null, text: performer.memberOf.department()"></span><br/>
+                  <span class="event-performerorganization" data-bind="visible: performer.memberOf.organization() != null, text:  performer.memberOf.organization()"></span>
+                </p>
+            </td>
+          </tr>
+          <tr data-bind="visible: host() != null">
+              <td><p class="event-key" data-bind="text: $root.hostLabel"></p></td>
+              <td><p><span class="event-host" data-bind="text: host()"></span></p></td>
+          </tr>
+          <tr data-bind="visible: audience() != null">
+              <td><p class="event-key" data-bind="text: $root.audienceLabel"></p></td>
+              <td><p><span class="event-audience" data-bind="text: audience()"></span></p></td>
+          </tr>
+          <tr data-bind="visible: admission() != null">
+              <td><p class="event-key" data-bind="text: $root.admissionLabel"></p></td>
+              <td><p><span class="event-admission" data-bind="text: admission()"></span></p></td>
+          </tr>
+          <tr data-bind="visible: food() != null">
+              <td><p class="event-key" data-bind="text: $root.foodLabel"></p></td>
+              <td><p><span class="event-food" data-bind="text: food()"></span></p></td>
+          </tr>
+          <tr data-bind="visible: description.formattedHtml() != null">
+              <td colspan="2">
+                <p class="event-description" data-bind="html: description.formattedHtml()"></p><br/>
+              </td>
+          </tr>
+          <tr data-bind="visible: organizer.givenName() != null">
+              <td><p class="event-key" data-bind="text: $root.organizerLabel"></p></td>
+              <td>
+                <p>
+                  <a class="event-organizer" data-bind="attr: { href: organizer.profileUrl() }"><span data-bind="text: organizer.givenName()"></span></a><br/>
+                  <span class="event-organizerphone" data-bind="visible: organizer.phone() != null, text: organizer.phone()"></span><br/>
+                  <a class="event-organizeremail" data-bind="visible: organizer.email() != null, attr: { href: 'mailto:' + organizer.email() }, text:  organizer.email()"></a>
+                </p>
+            </td>
+          </tr>
+          <tr>
+              <td class="event-key" data-bind="text: $root.shareEventLabel"></td>
+              <td>
+                <p><span class="event-url" data-bind="text: url()"></span></p>
+                <p>
+                  <a class="event-ical" data-bind="attr: { href: url(), id: 'iCal'+uid()}, click:function(){var my = window.open('data:text/calendar;charset=utf8,'+ escape(iCalExport('\r\n')));}, text: $root.downloadToiCalLabel"></a>
+              </p>
+              </td>
+          </tr>          
+        </tbody>
+      </table>
+      <br/><br/><br/>
+      <p data-bind="text: 'LOCATION FOR GOOGLEMAPS SEARCH : ' + location.formattedAddressForMaps()"></p>
+      <div class="event-flyer-container" data-bind="visible: flyer() != null">
+        <img class="event-flyer" data-bind="attr: { src: flyer() }" style="width: 100px; height: 100px;"></img>
+        <p class="event-flyer-download"><a data-bind="attr: { href: flyer() }, text: $root.downloadFlyerLabel" target="_blank"></a></p>
+      </div>
+      <div class="event-document-container" data-bind="visible: additionalDocument() != null">
+        <img class="event-document" data-bind="attr: { src: additionalDocument() }" style="width: 100px; height: 100px;"></img>
+        <p class="event-document-download"><a data-bind="attr: { href: additionalDocument() }, text: $root.downloadDocument" target="_blank"></a></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+  <h1 data-bind="text: latestNews"></h1>
+  <form role="form" class="search-news">       
+    <div class="row">
+      <div class="form-group">
+        <div class="col-md-5">
+          <label for="search-field" data-bind="text: searchTitle"></label>
+          <div class="input-group">
+            <input id="search-query" type="text" class="form-control" data-bind="attr: {placeholder: searchAllLabel}">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="10.9px" height="18px" viewBox="0 0 10.9 18" enable-background="new 0 0 10.9 18" xml:space="preserve">
+                <g>
+                  <polygon fill="#ffffff" points="1.4,18 0,16.6 8,9 0,1.5 1.4,0 10.9,9  "/>
+                </g>
+                </svg>
+              </button>
+            </span>
+          </div> <!-- /.input-group -->
+        </div>                
+          <a href="#" class="search-news--link-control search-news--filter-toggle">
+            <span class="toggle-text" data-bind="text: showFilters"></span> <span class="caret down"></span>
+          </a>                  
+          <div class="clearfix"></div>                  
+        </div> <!-- /.form-group -->
+      </div> <!-- /.row -->
+      <div class="search-news--filters">
+        <hr>
+        <div class="row">
+          <div class="col-lg-12">
+            <header>
+              <a href="#" class="search-news--link-control search-news--clear-filters" data-bind="text: clearFilters"> 
+              <span class="icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17.1px" height="17.1px" viewBox="0 0 17.1 17.1" enable-background="new 0 0 17.1 17.1" xml:space="preserve">
+                  <polygon fill="#ffffff" points="17.1,1.1 16,0 8.5,7.5 1.1,0 0,1.1 7.5,8.5 0,16 1.1,17.1 8.5,9.6 16,17.1 17.1,16 9.6,8.5 "/>
+                </svg>
+              </span></a>
+              <h4 data-bind="text: filtersTitle"></h4>
+            </header>                 
+          </div> 
+        </div> <!-- /.row -->
+        <div class="row">
+          <div class="col-md-5">
+            <div class="input-wrap" data-function="tags">
+              <label for="search-field" data-bind="text: tagsTitle"></label>
+              <div class="multiple-select mCustomScrollbar">
+                <div class="option"><input type="checkbox" name="foo[]" data-bucket="{id: checkbox7, etc: 'Letter g'}"><label>Option 7</label></div>
+                <div class="option"><input type="checkbox" name="foo[]" data-bucket="{id: checkbox8, etc: 'Letter h'}"><label>Option 8</label></div>
+                <div class="option"><input type="checkbox" name="foo[]" data-bucket="{id: checkbox9, etc: 'Letter i'}"><label>Option 9</label></div>
+
+              </div> <!-- multiple-select -->
+            </div> <!-- /.input-wrap -->
+            <div class="input-wrap" data-function="tags">
+              <label for="search-field--people" data-bind="text: peopleTitle"></label>
+                <input type="text" class="form-control typeahead" name="search-field--people" data-bind="attr: {placeholder: peopleAllLabel}" data-provide="typeahead">
+            </div> <!-- /.input-wrap -->
+          </div>
+          <div class="col-md-7">
+            <div class="input-wrap">
+              <label for="search-field" data-bind="text: dateTitle"></label>
+              <div class="clearfix"></div>
+              <div class="calendar inline-calendar" data-bind="datepicker: $root"></div>
+              <p data-bind="text: 'Selected Date is ' + selectedYear() + '/' + selectedMonth() + '/' + selectedDay()"></p>
+            </div> <!-- /.input-wrap -->
+          </div> <!-- /.col-md-7 -->
+          <div class="clearfix"></div>
+        </div> <!-- /.row -->
+      </div> <!-- /.search-news--filters -->            
+    </form>

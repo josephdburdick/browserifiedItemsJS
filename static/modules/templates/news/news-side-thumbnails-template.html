@@ -1,0 +1,44 @@
+<!-- This template does not display image placeholders -->
+<div class="module module-blue news">
+  <header>
+    <h4 data-bind="text: latestNews">
+    <svg version="1.1" id="icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+   width="14px" height="14px" viewBox="0 0 14 14" enable-background="new 0 0 14 14" xml:space="preserve">
+      <g>
+        <g>
+          <path d="M13,14H0V0h13V14z M1.9,12.1h9.2V1.9H1.9V12.1z"/>
+        </g>
+      </g>
+      <g>
+        <rect x="3.6" y="3.2" width="6.2" height="2"/>
+      </g>
+      <g>
+        <rect x="3.6" y="5.9" width="6.2" height="4.6"/>
+      </g>
+      </svg>
+    </h4>
+  </header>
+<!-- News: 1-Column Thumbnails -->
+<div class="row">
+  <div class="col-1 thumbs" data-bind='visible: allNews()[0].length == 0, text: $root.noResult'></div>
+    <!-- ko foreach: allNews()[0] -->
+    <div class="col-1 thumbs">
+      <a data-bind="attr: {href: url()}" class="col">
+        <figure>
+          <img width="330" height="247" src="data:image/gif;base64,R0lGODlhAQABAIAAAP//////zCH5BAEHAAAALAAAAAABAAEAAAICRAEAOw==" data-srcset="http://placehold.it/330x247/aa0000/&text=330x247+(normal) 1x, http://placehold.it/660x494/ffcc00/000000/&text=660x494+(retina) 2x" sizes="100vw" alt="Placeholder"/>
+        </figure>
+        <div class="body-text">
+          <div class="datetime" data-bind="text: formattedDate()"></div>
+          <header>
+            <h3 data-bind="text: name()"></h3>   
+          </header>
+        </div><!-- /.body-text -->
+        <div class="clearfix"></div>        
+      </a> <!-- /.col -->
+    </div>
+    <!-- /ko -->
+
+  </div><!-- news grid 1 col image -->      
+</div><!-- /.row -->
+<!-- /News: 1-Column Thumbnails -->
+</div>

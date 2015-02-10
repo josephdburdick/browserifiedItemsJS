@@ -1,0 +1,53 @@
+<ul class="events-navigation" role="navigation">
+  <li><a href="#" class="navigation-link today-link" data-bind="value: $root, text: $root.today"></a></li>
+  <li><a href="#" class="navigation-link previous-month-link" data-bind="value: $root, text: $root.previousWeek"></a></li>
+  <li><span data-bind="text: formattedDayRange()"></span></li>
+  <li><a href="#" class="navigation-link next-month-link" data-bind="value: $root, text: $root.nextWeek"></a></li>
+  <li><a href="#" class="navigation-link specific-date-link" data-bind="value: $root, text: '02/13/2015'"></a></li>
+</ul>
+<b>Days of the month containing data</b>
+<p data-bind="text: 'Selected Date is ' + selectedYear() + '/' + selectedMonth() + '/' + selectedDay()"></p>
+<ul>
+	<dayWithEntries params="year: selectedYear(), month: selectedMonth(), day: '01', parent: $root"></dayWithEntries>
+  <dayWithEntries params="year: selectedYear(), month: selectedMonth(), day: '02', parent: $root"></dayWithEntries>
+  <dayWithEntries params="year: selectedYear(), month: selectedMonth(), day: '03', parent: $root"></dayWithEntries>
+  <dayWithEntries params="year: selectedYear(), month: selectedMonth(), day: '04', parent: $root"></dayWithEntries>
+  <dayWithEntries params="year: selectedYear(), month: selectedMonth(), day: '05', parent: $root"></dayWithEntries>
+</ul>
+<div class="events-overview">
+  <!--The data is accessed using Knockout.-->
+  <!--All the properties are functions.-->
+  <!--The sorted events are organized as a dictionary.-->
+  <!--Key : day. Value : Array of unique events.-->
+  <div data-bind='visible: allEventsByDay().length == 0, text: $root.noResult'></div>
+    <!-- ko foreach: allEventsByDay() -->
+      <h3 class="event-day" data-bind="text: $data.key"></h3>
+      <!-- ko foreach: $data.value -->
+      <div data-bind="attr: { class: statusClass() }">
+        <p>
+          <span data-bind="visible: isAllDay() == false">
+            <span class="event-time" data-bind="text: formattedStartTime()"></span>
+            <span data-bind="visible: formattedEndTime() != null">-</span>
+            <span class="event-time" data-bind="visible: formattedEndTime() != null, text: formattedEndTime()"></span>
+          </span>
+          <br/>
+          <span data-bind="visible: isAllDay() == true">
+            <span class="event-time" data-bind="text: formattedTime()"></span>
+          </span>
+          <a href="#" class="navigation-link event-link">
+            <span data-bind="visible: status().toUpperCase() == 'CANCELLED', text: status()">&nbsp;</span>
+            <span data-bind="text: name()"></span>
+          </a>
+          <br data-bind="visible: performer.formattedName() != null"/>
+          <span class="event-performer" data-bind="visible: performer.formattedName() != null,text: 'Speaker: ' + performer.formattedName()"></span>
+          <br data-bind="visible: audience() != null"/>
+          <span data-bind="text: audience()"></span>
+        </p>
+      </div>
+      <!-- /ko -->
+    <hr/>
+    <!-- /ko -->
+    <div data-bind="visible: $root.maxItems() != null && $root.allEventsByDay().length > 0">
+        <a class="event-more" data-bind="visible: moreEventsLink() != null, attr: { href: moreEventsLink()}, text: $root.moreEvents"></a>
+    </div>
+</div>

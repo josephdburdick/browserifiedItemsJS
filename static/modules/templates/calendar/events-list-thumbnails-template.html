@@ -1,0 +1,47 @@
+<div class="events-overview">
+  <!--The data is accessed using Knockout.-->
+  <!--All the properties are functions.-->
+  <!--The sorted events are organized as a dictionary.-->
+  <!--Key : day. Value : Array of unique events.-->
+  <div data-bind='visible: allEventsByDay().length == 0, text: $root.noResult'></div>
+    <!-- ko foreach: allEventsByDay() -->
+      <h3 class="event-day" data-bind="text: $data.key"></h3>
+      <!-- ko foreach: $data.value -->
+      <table>
+        <tbody>
+          <tr data-bind="attr: { class: statusClass() }">
+              <td class="event-flyer-container">
+                <img class="event-flyer" data-bind="attr: { src: flyer() }"></img>
+                <p><a data-bind="attr: { href: flyer() }"></a></p>
+              </td>
+              <td class="event-items">
+              <p>
+                <a href="#" class="navigation-link event-link">
+                  <span data-bind="visible: status().toUpperCase() == 'CANCELLED', text: status()">&nbsp;</span>
+                  <span data-bind="text: name()"></span>
+                </a>
+                <br/>
+                <span class="event-performer" data-bind="visible: performer.formattedName() != null,text: performer.formattedName()"></span>
+                <br data-bind="visible: performer.formattedName() != null"/>
+                <span data-bind="visible: isAllDay() == false">
+                  <span class="event-time" data-bind="text: formattedStartTime()"></span>
+                </span>
+                <span data-bind="visible: isAllDay() == true">
+                  <span class="event-time" data-bind="text: formattedTime()"></span>
+                </span>
+                <span data-bind="visible: location.addressDetails.shortLocationName() != null"> | </span>
+                <span data-bind="visible: location.addressDetails.shortLocationName() != null, text: location.addressDetails.shortLocationName()"></span>
+                <br data-bind="visible: audience() != null"/>
+                <span data-bind="text: audience()"></span>
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- /ko -->
+    <hr/>
+    <!-- /ko -->
+  <div data-bind="visible: $root.maxItems() != null && allEventsByDay().length > 0">
+    <a class="event-more" data-bind="visible: moreEventsLink() != null, attr: { href: moreEventsLink()}, text: $root.moreEvents"></a>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+<!-- This template always displays image placeholders in the first slice only -->
+<!-- make sure the second slice has been updated with the structure to gain full width if no image -->
+<!-- News: News Portal -->
+<div class="content-body news">
+  <div data-bind="attr: {id: 'news-filter-options-' + key()}">
+      <span data-bind="template: 'news-filter-template-' + key()"></span>
+  </div>
+    <div class="news-listing--articles">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pull-left" data-bind="text: formattedPage()"></div>
+          <div class="pull-right">
+            <span data-bind="text: showing"></span>
+            <span class="dropdown">
+              <!-- ko foreach: currentItemDisplayedOptions() -->
+              <a data-bind="text: $data[0], attr: {class: $data[1]}" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <span class="caret down"></span>
+              </a>
+              <!-- /ko -->
+              <ul class="dropdown-menu" role="menu">
+                <!-- ko foreach: maxItemsOptions() -->
+                <li role="presentation">
+                  <a data-bind="text: $data[0], attr: {class: $data[1]}" class="countPerPage" role="menuitem" tabindex="-1" href="#"></a>
+                </li>
+                <!-- /ko -->
+              </ul>
+            </span>
+          </div>
+        </div>
+        <div class="row-group summary news">
+          <!-- News: 1-Column Highlight -->
+          <div class="column-list">
+            <div class="col-1 highlight">
+              <div class="col content-group" data-bind='visible: allNews()[0].length + allNews()[1].length + allNews()[2].length == 0, text: $root.noResult'></div>
+              <!-- ko foreach: allNews()[0] -->
+              <div class="col content-group">
+                <figure>
+                  <img width="739" height="554" src="data:image/gif;base64,R0lGODlhAQABAIAAAP//////zCH5BAEHAAAALAAAAAABAAEAAAICRAEAOw==" data-srcset="http://placehold.it/739x554/aa0000/&text=739x554+(normal) 1x, http://placehold.it/1478x1108/ffcc00/000000/&text=1478x1108+(retina) 2x" sizes="100vw" alt="Placeholder"/>
+                </figure>
+                <div class="body-text">
+                  <div class="datetime" data-bind="text: formattedDate()"></div>
+                  <header>
+                    <h3 data-bind="text: name()"></h3> 
+                  </header>
+                  <p data-bind="text: description()"></p>
+                  <footer>
+                    <a href="#" data-bind="attr: {href: url()}, text: $root.readMore"></a>
+                  </footer>
+                  <ul class="tags">
+                    <li class="label" data-bind="text: $root.tagsLabel"></li>
+                    <!-- ko foreach: tags() -->
+                      <li><a data-bind="attr: {href: $data[1]}, text: $data[0]"></a></li>
+                    <!-- /ko -->
+                  </ul>
+                </div><!-- /.body-text -->
+                <div class="clearfix"></div>        
+              </div> <!-- /.content-group -->
+              <!-- /ko -->
+            </div>
+          </div>
+          <!-- / News: 1-Column Highlight -->
+          <!-- News: 1-Column Thumbnails -->
+          <div class="column-list">
+            <div class="col-1 thumbs">
+            <!-- ko foreach: allNews()[1] -->
+            <div class="content-group">
+                <figure>
+                  <img width="120" height="90" src="data:image/gif;base64,R0lGODlhAQABAIAAAP//////zCH5BAEHAAAALAAAAAABAAEAAAICRAEAOw==" data-srcset="http://placehold.it/120x90/aa0000/&text=120x90+(normal) 1x, http://placehold.it/240x180/ffcc00/000000/&text=240x180+(retina) 2x" sizes="100vw" alt="Placeholder"/>
+                </figure>
+                <div class="body-text">
+                  <div class="datetime" data-bind="text: formattedDate()"></div>
+                  <header>
+                    <a data-bind="attr: {href: url()}"><h3 data-bind="text: name()"></h3></a>
+                  </header>
+                  <p data-bind="text: description()"></p>
+                  <ul class="tags">
+                    <li class="label" data-bind="text: $root.tagsLabel"></li>
+                    <!-- ko foreach: tags() -->
+                      <li><a data-bind="attr: {href: $data[1]}, text: $data[0]"></a></li>
+                    <!-- /ko -->
+                  </ul>
+                </div><!-- /.body-text -->
+                <div class="clearfix"></div>        
+              </div> <!-- /.content-group -->
+              <!-- /ko -->
+            </div>
+          </div>
+          <!-- /News: 1-Column Thumbnails -->
+          <!-- News: 1-Column Text -->
+          <div class="column-list">
+            <div class="col-1 text">
+              <!-- ko foreach: allNews()[2] -->
+              <div class="content-group">
+                <div class="body-text">
+                  <div class="datetime" data-bind="text: formattedDate()"></div>
+                  <header>
+                    <a data-bind="attr: {href: url()}"><h3 data-bind="text: name()"></h3></a> 
+                  </header>
+                  <ul class="tags">
+                    <li class="label" data-bind="text: $root.tagsLabel"></li>
+                    <!-- ko foreach: tags() -->
+                      <li><a data-bind="attr: {href: $data[1]}, text: $data[0]"></a></li>
+                    <!-- /ko -->
+                  </ul>      
+                </div><!-- /.body-text -->
+                <div class="clearfix"></div>        
+              </div>
+              <!-- /ko -->
+            </div>     
+          </div>
+          <!-- /News: 1-Column Text -->
+        </div>
+      </div>
+      <div class="pagination text-center" data-bind="visible: totalPages() > 1">
+        <a href="#first-page" id="pagination_first-page" data-bind="visible: currentPage() > 1">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="10.5px" height="10px" viewBox="0 0 10.5 10" enable-background="new 0 0 10.5 10" xml:space="preserve">
+            <polygon points="10.5,0 1,4.8 1,0 0,0 0,10 1,10 1,5.3 10.5,10 "/>
+          </svg>
+        </a>
+        <a href="#prev-page" data-bind="visible: currentPage() > 1">
+          <svg version="1.1" id="pagination_prev-page" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="10px" height="10px" viewBox="0 0 10 10" enable-background="new 0 0 10 10" xml:space="preserve">
+            <polygon points="10,10 10,0 0,5 "/>
+          </svg>
+        </a>
+        <span class="pagination-status" data-bind="text: formattedPage()"></span>
+        <a href="#next-page" data-bind="visible: currentPage() < totalPages()">
+          <svg version="1.1" id="pagination_next-page" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="10px" height="10px" viewBox="0 0 10 10" enable-background="new 0 0 10 10" xml:space="preserve">
+            <polygon points="0,0 0,10 10,5 "/>
+          </svg>
+        </a>
+        <a href="#last-page" data-bind="visible: currentPage() < totalPages()">
+          <svg version="1.1" id="pagination_last-page" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="10.5px" height="10px" viewBox="0 0 10.5 10" enable-background="new 0 0 10.5 10" xml:space="preserve">
+            <polygon points="9.5,0 9.5,4.7 0,0 0,10 9.5,5.3 9.5,10 10.5,10 10.5,0 "/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /News: News Portal -->

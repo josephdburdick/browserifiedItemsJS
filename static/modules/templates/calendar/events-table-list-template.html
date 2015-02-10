@@ -1,0 +1,44 @@
+<div class="events-overview">
+  <!--The data is accessed using Knockout.-->
+  <!--All the properties are functions.-->
+  <!--The sorted events are organized as a dictionary.-->
+  <!--Key : day. Value : Array of unique events.-->
+  <div data-bind='visible: allEventsByDay().length == 0, text: $root.noResult'></div>
+  <table>
+    <tbody>
+    <!-- ko foreach: allEventsByDay() -->
+      <tr class="event-day" >
+        <td colspan="3"><h3 data-bind="text: $data.key"></h3></td>
+      </tr>
+      <!-- ko foreach: $data.value -->
+      <tr data-bind="attr: { class: statusClass() }">
+        <td>
+          <p>
+            <span data-bind="visible: isAllDay() == false">
+              <span class="event-time" data-bind="text: formattedStartTime()"></span>
+              <span data-bind="visible: formattedEndTime() != null">-</span>
+              <span class="event-time" data-bind="visible: formattedEndTime() != null, text: formattedEndTime()"></span>
+            </span>
+            <span data-bind="visible: isAllDay() == true">
+              <span class="event-time" data-bind="text: formattedTime()"></span>
+            </span>
+            <br/>
+            <a href="#" class="navigation-link event-link">
+              <span data-bind="visible: status().toUpperCase() == 'CANCELLED', text: status()">&nbsp;</span>
+              <span data-bind="text: name()"></span>
+            </a>
+            <br data-bind="visible: performer.formattedName() != null"/>
+            <span class="event-performer" data-bind="visible: performer.formattedName() != null, text: performer.formattedName()"></span>
+            <br data-bind="visible: audience() != null"/>
+            <span data-bind="text: audience()"></span>
+          </p>
+        </td>
+      </tr>
+      <!-- /ko -->
+    <!-- /ko -->
+    </tbody>
+  </table>
+  <div data-bind="visible: $root.maxItems() != null && allEventsByDay().length > 0">
+    <a class="event-more" data-bind="visible: moreEventsLink() != null, attr: { href: moreEventsLink()}, text: $root.moreEvents"></a>
+  </div>
+</div>
