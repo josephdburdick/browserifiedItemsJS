@@ -1,6 +1,8 @@
-define(['knockout'], function(ko) 
+module.exports = function(MyApp) 
 {
     'use strict';
+
+    var ko = MyApp.vendor.knockout;
 
     function DayWithEntriesViewModel(params) 
     {
@@ -34,4 +36,4 @@ define(['knockout'], function(ko)
         viewModel: DayWithEntriesViewModel,
         template: "<div data-bind=\"text: 'The count of ' + year() + '/' + month() + '/' + day + ' is ' + count()\"></div>"
     };
-});
+};

@@ -1,7 +1,11 @@
-define(['knockout','jquery','calendarEvent/jCal2Display','helpers'],
-    function(ko, $, CalendarEvent, utils)
+module.exports = function(MyApp)
 {
     'use strict';
+
+    var ko = MyApp.vendor.knockout;
+    var $ = MyApp.vendor.jquery;
+    var CalendarEvent = MyApp.calendar.viewmodel.jCal2Display.CalendarEvent;
+    var utils = MyApp.common.helpers;
 
     // A (v)calendar contains an array of no, one or more (v)event(s).
     function CalendarEventList(jCalData) 
@@ -66,4 +70,4 @@ define(['knockout','jquery','calendarEvent/jCal2Display','helpers'],
     }
     
     return CalendarEventList;
-});
+};

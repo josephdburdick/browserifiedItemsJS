@@ -1,7 +1,9 @@
-define(['jquery','calendarPropertyDetails/json2jCal'],
-function($,PropertyDetails) 
+module.exports = function(MyApp) 
 {
 	'use strict';
+
+	var $ = MyApp.vendor.jquery;
+	var PropertyDetails = MyApp.calendar.viewmodel.json2jCal.PropertyDetails;
 
 	// Container providing the structure [valueName, valueParameters, valueDataType, valueContent].
 	// This structure is needed to comply to the jCal RFC expectations.
@@ -53,4 +55,4 @@ function($,PropertyDetails)
 	}
 	
 	return Property;
-});
+};

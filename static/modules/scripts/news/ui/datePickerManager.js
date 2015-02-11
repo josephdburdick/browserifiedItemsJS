@@ -1,5 +1,11 @@
-define(['knockout','moment','domManager','newsConstants','itemsController'], function(ko, Moment, domManager, constants, controller)
+module.exports = function(MyApp)
 {
+    var ko = MyApp.vendor.knockout;
+    var Moment = MyApp.vendor.moment;
+    var domManager = MyApp.common.domManager;
+    var constants = MyApp.news.constants;
+    var controller = MyApp.common.ItemsController;
+
 	function initDatePicker(key, controller)
     {
 		ko.bindingHandlers.datepicker = {
@@ -159,4 +165,4 @@ define(['knockout','moment','domManager','newsConstants','itemsController'], fun
         init: initDatePicker,
         refresh: refreshDatePicker
     };
-});
+};

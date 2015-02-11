@@ -1,6 +1,9 @@
-define(['moment','itemsBehavior'], function(Moment, Behavior)
+module.exports = function(MyApp)
 {
 	'use strict';
+
+  var Moment = MyApp.vendor.moment;
+  var Behavior = MyApp.common.ItemsBehavior;
 
 	function ItemsFactory()
 	{
@@ -51,15 +54,15 @@ define(['moment','itemsBehavior'], function(Moment, Behavior)
     {
       case "news":
         // this call only works if the module has been loaded already
-        var NewsList = require('newsList');
+        var NewsList = MyApp.news.viewmodel.NewsList;
         item = new NewsList(key);
       break;
       case "calendar":
-        var Container = require('calendarContainer/jCal2Display');
+        var Container = MyApp.calendar.viewmodel.jCal2Display.CalendarContainer;
         item = new Container(key);
       break;
       case "calendarEvent":
-        var CalendarEvent = require('calendarEvent/jCal2Display');
+        var CalendarEvent = MyApp.calendar.viewmodel.jCal2Display.CalendarEvent;
         item = new CalendarEvent();
       break;
     }
@@ -98,7 +101,7 @@ define(['moment','itemsBehavior'], function(Moment, Behavior)
     switch (config.itemType)
     {
       case 'calendar':
-        var jsonContainer = require('calendarContainer/json2jCal');
+        var jsonContainer = MyApp.calendar.viewmodel.json2jCal.CalendarContainer;
         var interfaceContainer = new jsonContainer(jsonData.vcalendars);
         var jCalData = interfaceContainer.jCalExport();
 
@@ -106,7 +109,7 @@ define(['moment','itemsBehavior'], function(Moment, Behavior)
         this.viewModels[config.key].load($.parseJSON(jCalData), config.maxItems, config.readMoreBaseLink, true, config.selectedDate, this.deferredLoadings[key]);
       break;
       case 'calendarEvent':
-        var jsonContainer = require('calendarContainer/json2jCal');
+        var jsonContainer = MyApp.calendar.viewmodel.json2jCal.CalendarContainer;
         // the server does not include a vcalendars container when requested for a single event
         var interfaceContainer = new jsonContainer(jsonData);
         var jCalData = interfaceContainer.jCalExport();
@@ -177,4 +180,4 @@ define(['moment','itemsBehavior'], function(Moment, Behavior)
   }
 
 	return ItemsFactory;
-});
+};

@@ -1,6 +1,8 @@
-define(['moment'], function(Moment)
+module.exports = function(MyApp)
 {
 	'use strict';
+
+	var Moment = MyApp.vendor.moment;
 
 	function BehaviorStrategy(itemType)
 	{
@@ -10,7 +12,7 @@ define(['moment'], function(Moment)
 		{
 			case 'news':
 				// this call only works if the module has been loaded already
-				var constants = require('newsConstants');
+				var constants = MyApp.news.constants;
 				self.pagedTemplateNameFirstPage = constants.templates.newscombined;
 				self.pagedTemplateOtherPages = constants.templates.news1coltextpaging;
 				self.urlDefaultValue = constants.config.serviceUrlBaseDefault;
@@ -31,7 +33,7 @@ define(['moment'], function(Moment)
 			break;
 			case 'calendar':
 			case 'calendarEvent':
-				var constants = require('calendarConstants');
+				var constants = MyApp.calendar.constants;
 				self.pagedTemplateNameFirstPage = constants.templates.eventslistagenda;
 				self.pagedTemplateOtherPages = constants.templates.eventslistagenda;
 				self.urlDefaultValue = constants.calendarService.calendar.urlBegin;
@@ -632,4 +634,4 @@ define(['moment'], function(Moment)
     }
 
     return BehaviorStrategy;
-});
+};

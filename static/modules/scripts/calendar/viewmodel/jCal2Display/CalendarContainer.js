@@ -1,7 +1,15 @@
-define(['knockout','knockout-jquery/dialog','moment','underscore', 'jquery','calendarEventList/jCal2Display','helpers','calendarConstants'],
-    function(ko, kojquery, Moment, _, $, CalendarEventList, utils, constants) 
+module.exports = function(MyApp) 
 {
 	'use strict';
+
+    var ko = MyApp.vendor.knockout;
+    //var kojquery = MyApp.vendor.knockoutjquery;
+    var $ = MyApp.vendor.jquery;
+    var _ = MyApp.vendor.underscore;
+    var Moment = MyApp.vendor.moment;
+    var utils = MyApp.common.helpers;
+    var constants = MyApp.calendar.constants;
+    var CalendarEventList = MyApp.calendar.viewmodel.jCal2Display.CalendarEventList;
 
     // A (v)calendars container contains an array of no, one or more (v)calendar(s).
     function CalendarContainer(key) 
@@ -475,4 +483,4 @@ define(['knockout','knockout-jquery/dialog','moment','underscore', 'jquery','cal
     };
 
     return CalendarContainer;
-});
+};

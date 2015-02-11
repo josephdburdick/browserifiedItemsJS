@@ -1,7 +1,11 @@
-define(['jquery','helpers','calendarEventList/json2jCal','calendarProperty/json2jCal'],
-	function($, utils, CalendarEventList, Property) 
+module.exports = function(MyApp) 
 {
 	'use strict';
+
+	var $ = MyApp.vendor.jquery;
+	var utils = MyApp.common.helpers;
+	var CalendarEventList = MyApp.calendar.viewmodel.json2jCal.CalendarEventList;
+	var Property = MyApp.calendar.viewmodel.json2jCal.Property;
 
 	// A (v)calendars container contains an array of no, one or more (v)calendar(s).
     function CalendarContainer(jsonData) 
@@ -109,4 +113,4 @@ define(['jquery','helpers','calendarEventList/json2jCal','calendarProperty/json2
 	}
 	
 	return CalendarContainer;
-});
+};

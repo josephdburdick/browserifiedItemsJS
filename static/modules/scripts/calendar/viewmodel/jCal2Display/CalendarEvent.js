@@ -1,7 +1,13 @@
-define(['knockout','moment','jquery','underscore','helpers','calendarConstants'],
-    function(ko, Moment, $, _, utils, constants)
+module.exports = function(MyApp)
 {
     'use strict';
+
+    var ko = MyApp.vendor.knockout;
+    var $ = MyApp.vendor.jquery;
+    var _ = MyApp.vendor.underscore;
+    var Moment = MyApp.vendor.moment;
+    var utils = MyApp.common.helpers;
+    var constants = MyApp.calendar.constants;
 
     // (v)event
     function CalendarEvent(jCalData, parentList) 
@@ -522,4 +528,4 @@ define(['knockout','moment','jquery','underscore','helpers','calendarConstants']
     }
     
     return CalendarEvent;
-});
+};

@@ -1,5 +1,11 @@
-define(['underscore','jquery','moment'], function(_, $, Moment,constants) 
+module.exports = function(MyApp) 
 {
+    'use strict';
+
+    var _ = MyApp.vendor.underscore;
+    var $ = MyApp.vendor.jquery;
+    var Moment = MyApp.vendor.moment;
+
 	// makes the requests to the calendar server
   	function getServerData(serviceUrl, key, callback, controller, errorMsg)
     {
@@ -20,4 +26,4 @@ define(['underscore','jquery','moment'], function(_, $, Moment,constants)
 	return {
         getServerData: getServerData
     };
-});
+};

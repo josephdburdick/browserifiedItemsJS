@@ -1,6 +1,24 @@
-define(['domManager','newsConstants','newsEventListeners', 'newsDatePickerManager','uiMain'], function(domManager, constants, newsEventListeners, datePickerManager, uiEventListeners){
+module.exports = function(MyApp)
+{
 
     'use strict';
+
+    var domManager = MyApp.common.domManager;
+    var constants = MyApp.news.constants;
+    var newsEventListeners = MyApp.news.eventListeners;
+    var datePickerManager = MyApp.news.datePickerManager;
+    var uiEventListeners = MyApp.external.uiMain;
+    var newsSideThumbnailsTemplate = MyApp.news.templates.newssidethumbnails;
+    var news1ColHighlightTemplate = MyApp.news.templates.news1colhighlight;
+    var news2ColHighlightTemplate = MyApp.news.templates.news2colhighlight;
+    var news2ColTextTemplate = MyApp.news.templates.news2coltext;
+    var news2ColThumbnailsTemplate = MyApp.news.templates.news2colthumbnails;
+    var newsCombinedTemplate = MyApp.news.templates.newscombined;
+    var newsCombinedFilterTemplate = MyApp.news.templates.newscombinedfilter;
+    var news1ColTextPagingTemplate = MyApp.news.templates.news1coltextpaging;
+    var news1ColHighlightTemplate = MyApp.news.templates.news1colhighlight;
+    var newsGridFullTemplate = MyApp.news.templates.newsgridfull;
+    var newsSideTextTemplate = MyApp.news.templates.newssidetext;
 
     function atLeastOneImage(subset)
     {
@@ -35,86 +53,68 @@ define(['domManager','newsConstants','newsEventListeners', 'newsDatePickerManage
             // unique calendar content are needed because of different styles applied
             // if same container reused, styles specified get merged
             case constants.templates.news1colhighlight:
+                domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
+                news1ColHighlightTemplate);
 
-                // templates are loaded if they are used only
-                require(['text!templates/news/news-1-col-highlight-template.html','domManager', 'newsConstants'], 
-                function(news1ColHighlightTemplate, domManager, constants)
-                {
-                    domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
-                    news1ColHighlightTemplate);
+                // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
+                // components without conflicts (KO error : "you cannot do multiple bindings...")
+                domManager.applyKnockoutBindings(viewModel,[constants.idNames.newsIdBegin, key].join(''), true);
 
-                    // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
-                    // components without conflicts (KO error : "you cannot do multiple bindings...")
-                    domManager.applyKnockoutBindings(viewModel,[constants.idNames.newsIdBegin, key].join(''), true);
+                // remove loading message currently displayed to user
+                domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
 
-                    // remove loading message currently displayed to user
-                    domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
+                newsEventListeners.init(key, controller);
 
-                    newsEventListeners.init(key, controller);
-
-                    // require is async and this call needs to happen last
-                    uiEventListeners.init();
-                });
+                // require is async and this call needs to happen last
+                uiEventListeners.init();
             break;
             case constants.templates.news2colhighlight:
-                require(['text!templates/news/news-2-col-highlight-template.html','domManager', 'newsConstants'], 
-                function(news2ColHighlightTemplate, domManager, constants)
-                {
-                    domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
-                    news2ColHighlightTemplate);
+                domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
+                news2ColHighlightTemplate);
 
-                    // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
-                    // components without conflicts (KO error : "you cannot do multiple bindings...")
-                    domManager.applyKnockoutBindings(viewModel,[constants.idNames.newsIdBegin, key].join(''), true);
+                // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
+                // components without conflicts (KO error : "you cannot do multiple bindings...")
+                domManager.applyKnockoutBindings(viewModel,[constants.idNames.newsIdBegin, key].join(''), true);
 
-                    // remove loading message currently displayed to user
-                    domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
+                // remove loading message currently displayed to user
+                domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
 
-                    newsEventListeners.init(key, controller);
+                newsEventListeners.init(key, controller);
 
-                    // require is async and this call needs to happen last
-                    uiEventListeners.init();
-                });
+                // require is async and this call needs to happen last
+                uiEventListeners.init();
             break;
             case constants.templates.news2coltext:
-                require(['text!templates/news/news-2-col-text-template.html','domManager', 'newsConstants'], 
-                function(news2ColTextTemplate, domManager, constants)
-                {
-                    domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
-                    news2ColTextTemplate);
+                domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
+                news2ColTextTemplate);
 
-                    // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
-                    // components without conflicts (KO error : "you cannot do multiple bindings...")
-                    domManager.applyKnockoutBindings(viewModel,[constants.idNames.newsIdBegin, key].join(''), true);
+                // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
+                // components without conflicts (KO error : "you cannot do multiple bindings...")
+                domManager.applyKnockoutBindings(viewModel,[constants.idNames.newsIdBegin, key].join(''), true);
 
-                    // remove loading message currently displayed to user
-                    domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
+                // remove loading message currently displayed to user
+                domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
 
-                    newsEventListeners.init(key, controller);
+                newsEventListeners.init(key, controller);
 
-                    // require is async and this call needs to happen last
-                    uiEventListeners.init();
-                });
+                // require is async and this call needs to happen last
+                uiEventListeners.init();
             break;
             case constants.templates.news2colthumbnails:
-                require(['text!templates/news/news-2-col-thumbnails-template.html','domManager', 'newsConstants'], 
-                function(news2ColThumbnailsTemplate, domManager, constants)
-                {
-                    domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
-                    news2ColThumbnailsTemplate);
+                domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
+                news2ColThumbnailsTemplate);
 
-                    // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
-                    // components without conflicts (KO error : "you cannot do multiple bindings...")
-                    domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
+                // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
+                // components without conflicts (KO error : "you cannot do multiple bindings...")
+                domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
 
-                    // remove loading message currently displayed to user
-                    domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
+                // remove loading message currently displayed to user
+                domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
 
-                    newsEventListeners.init(key, controller);
+                newsEventListeners.init(key, controller);
 
-                    // require is async and this call needs to happen last
-                    uiEventListeners.init();
-                });
+                // require is async and this call needs to happen last
+                uiEventListeners.init();
             break;
             case constants.templates.newscombined:
                 // the first implementation was also using nested templates
@@ -175,28 +175,24 @@ define(['domManager','newsConstants','newsEventListeners', 'newsDatePickerManage
                 // force refresh of data set, since we modified the content of the array, not the array itself
                 viewModel.triggerRepaintData(346);
 
-                require(['text!templates/news/news-combined-template.html','text!templates/news/news-combined-filter-template.html','domManager', 'newsConstants'], 
-                function(newsCombinedTemplate, newsCombinedFilterTemplate, domManager, constants)
-                {
-                    // nested
-                    domManager.addTemplate(['news-filter-template-', key].join(''), 
-                    newsCombinedFilterTemplate);
+                // nested
+                domManager.addTemplate([constants.idNames.newsFilterTemplateIdBegin, key].join(''), 
+                newsCombinedFilterTemplate);
 
-                    domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
-                    newsCombinedTemplate);
+                domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
+                newsCombinedTemplate);
 
-                    // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
-                    // components without conflicts (KO error : "you cannot do multiple bindings...")
-                    domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
+                // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
+                // components without conflicts (KO error : "you cannot do multiple bindings...")
+                domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
 
-                    // remove loading message currently displayed to user
-                    domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
+                // remove loading message currently displayed to user
+                domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
 
-                    newsEventListeners.init(key, controller);
+                newsEventListeners.init(key, controller);
 
-                    // require is async and this call needs to happen last
-                    uiEventListeners.init();
-                });
+                // require is async and this call needs to happen last
+                uiEventListeners.init();
             break;
             case constants.templates.newsgridfull:
                 // the first implementation was also using nested templates
@@ -214,108 +210,82 @@ define(['domManager','newsConstants','newsEventListeners', 'newsDatePickerManage
                 // force refresh of data set, since we modified the content of the array, not the array itself
                 viewModel.triggerRepaintData(345);
 
-                require(['text!templates/news/news-grid-full-template.html','domManager', 'newsConstants'], 
-                function(newsGridFullTemplate, domManager, constants)
-                {
-                    domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
-                    newsGridFullTemplate);
+                domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), newsGridFullTemplate);
 
-                    // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
-                    // components without conflicts (KO error : "you cannot do multiple bindings...")
-                    domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
+                // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
+                // components without conflicts (KO error : "you cannot do multiple bindings...")
+                domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
 
-                    // remove loading message currently displayed to user
-                    domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
+                // remove loading message currently displayed to user
+                domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
 
-                    newsEventListeners.init(key, controller);
+                newsEventListeners.init(key, controller);
 
-                    // require is async and this call needs to happen last
-                    uiEventListeners.init();
-                });
+                // require is async and this call needs to happen last
+                uiEventListeners.init();
             break;
             case constants.templates.newssidetext:
-                require(['text!templates/news/news-side-text-template.html','domManager', 'newsConstants'], 
-                function(newsSideTextTemplate, domManager, constants)
-                {
-                    domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
-                    newsSideTextTemplate);
+                domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), newsSideTextTemplate);
 
-                    // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
-                    // components without conflicts (KO error : "you cannot do multiple bindings...")
-                    domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
+                // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
+                // components without conflicts (KO error : "you cannot do multiple bindings...")
+                domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
 
-                    // remove loading message currently displayed to user
-                    domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
+                // remove loading message currently displayed to user
+                domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
 
-                    newsEventListeners.init(key, controller);
+                newsEventListeners.init(key, controller);
 
-                    // require is async and this call needs to happen last
-                    uiEventListeners.init();
-                });
+                // require is async and this call needs to happen last
+                uiEventListeners.init();
             break;
             case constants.templates.newssidethumbnails:
-                require(['text!templates/news/news-side-thumbnails-template.html','domManager', 'newsConstants'], 
-                function(newsSideThumbnailsTemplate, domManager, constants)
-                {
-                    domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
-                    newsSideThumbnailsTemplate);
+                domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), newsSideThumbnailsTemplate);
 
-                    // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
-                    // components without conflicts (KO error : "you cannot do multiple bindings...")
-                    domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
+                // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
+                // components without conflicts (KO error : "you cannot do multiple bindings...")
+                domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
 
-                    // remove loading message currently displayed to user
-                    domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
+                // remove loading message currently displayed to user
+                domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
 
-                    newsEventListeners.init(key, controller);
+                newsEventListeners.init(key, controller);
 
-                    // require is async and this call needs to happen last
-                    uiEventListeners.init();
-                });
+                // require is async and this call needs to happen last
+                uiEventListeners.init();
             break;
             case constants.templates.news1coltextpaging:
-                require(['text!templates/news/news-1-col-text-paging-template.html','text!templates/news/news-combined-filter-template.html','domManager', 'newsConstants'], 
-                function(news1ColTextPagingTemplate, newsCombinedFilterTemplate, domManager, constants)
-                {
-                    // nested
-                    domManager.addTemplate(['news-filter-template-', key].join(''), 
-                    newsCombinedFilterTemplate);
+                // nested
+                domManager.addTemplate([constants.idNames.newsFilterTemplateIdBegin, key].join(''), newsCombinedFilterTemplate);
 
-                    domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
-                    news1ColTextPagingTemplate);
+                domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), news1ColTextPagingTemplate);
 
-                    // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
-                    // components without conflicts (KO error : "you cannot do multiple bindings...")
-                    domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
+                // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
+                // components without conflicts (KO error : "you cannot do multiple bindings...")
+                domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
 
-                    // remove loading message currently displayed to user
-                    domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
+                // remove loading message currently displayed to user
+                domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
 
-                    newsEventListeners.init(key, controller);
+                newsEventListeners.init(key, controller);
 
-                    // require is async and this call needs to happen last
-                    uiEventListeners.init();
-                });
+                // require is async and this call needs to happen last
+                uiEventListeners.init();
             break;
             default:
-                require(['text!templates/news/news-1-col-highlight-template.html','domManager', 'newsConstants'], 
-                function(news1ColHighlightTemplate, domManager, constants)
-                {
-                    domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), 
-                    news1ColHighlightTemplate);
+                domManager.addTemplate([constants.idNames.newsTemplateIdBegin, key].join(''), news1ColHighlightTemplate);
 
-                    // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
-                    // components without conflicts (KO error : "you cannot do multiple bindings...")
-                    domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
+                // specifying the destination of the data in the DOM allows using Knockout-jquery-ui
+                // components without conflicts (KO error : "you cannot do multiple bindings...")
+                domManager.applyKnockoutBindings(viewModel, [constants.idNames.newsIdBegin, key].join(''), true);
 
-                    // remove loading message currently displayed to user
-                    domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
+                // remove loading message currently displayed to user
+                domManager.removeFromDom(constants.idNames.newsloadingIdBegin, key);
 
-                    newsEventListeners.init(key, controller);
+                newsEventListeners.init(key, controller);
 
-                    // require is async and this call needs to happen last
-                    uiEventListeners.init();
-                });
+                // require is async and this call needs to happen last
+                uiEventListeners.init();
             break;
         }
     }
@@ -323,4 +293,4 @@ define(['domManager','newsConstants','newsEventListeners', 'newsDatePickerManage
     return {
         init: initNewsBindings
     };
-});
+};

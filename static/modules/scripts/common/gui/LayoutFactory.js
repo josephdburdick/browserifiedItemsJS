@@ -1,4 +1,4 @@
-define([], function()
+module.exports = function(MyApp)
 {
 	'use strict';
 
@@ -14,12 +14,11 @@ define([], function()
 	    switch(itemType)
 	    {
 	      case "news":
-	        // this call only works if the module has been loaded already
-	        item = require('newsLayout');
+	        item = MyApp.news.layout;
 	      break;
 	      case "calendar":
 	      case "calendarEvent":
-	      	item = require('calendarLayout');
+	      	item = MyApp.calendar.layout;
 	      break;
 	    }
 
@@ -33,12 +32,11 @@ define([], function()
 	    switch(itemType)
 	    {
 	      case "news":
-	        // this call only works if the module has been loaded already
-	        item = require('newsEventListeners');
+	        item = MyApp.news.eventListeners;
 	      break;
 	      case "calendar":
 	      case "calendarEvent":
-	      	item = require('calendarEventListeners');
+	      	item = MyApp.calendar.eventListeners;
 	      break;
 	    }
 
@@ -61,4 +59,4 @@ define([], function()
 	}
 
 	return LayoutFactory;
-});
+};

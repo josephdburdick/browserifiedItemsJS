@@ -1,4 +1,4 @@
-define([],function() 
+module.exports = function() 
 {
 	// does not include text contained directly in the HTML of the templates
 	return {
@@ -102,4 +102,4 @@ define([],function()
 			loading: "Calendar Widget Loading..."
 		}
 	};
-});
+};

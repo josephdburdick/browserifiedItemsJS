@@ -1,7 +1,10 @@
-define(['moment','helpers','calendarProperty/json2jCal'],
-function(Moment, utils, Property) 
+module.exports = function(MyApp) 
 {
     'use strict';
+
+    var Moment = MyApp.vendor.moment;
+    var utils = MyApp.common.helpers;
+    var Property = MyApp.calendar.viewmodel.json2jCal.Property;
 
     // (v)event
     // Most of the processing done here is parsing and flattening the key-value pairs into properties.
@@ -313,4 +316,4 @@ function(Moment, utils, Property)
     }
 
     return CalendarEvent;
-});
+};

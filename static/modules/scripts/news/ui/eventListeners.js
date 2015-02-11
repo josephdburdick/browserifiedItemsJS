@@ -1,6 +1,13 @@
-define(['knockout','jquery','moment','underscore','bootstrap','newsConstants', 'newsDatePickerManager'], function(ko, $, Moment, _, bootstrap, constants, datePickerManager) 
+module.exports = function(MyApp) 
  {
     'use strict';
+
+    var ko = MyApp.vendor.knockout;
+    var Moment = MyApp.vendor.moment;
+    var $ = MyApp.vendor.jquery;
+    var bootstrap = MyApp.vendor.bootstrap;
+    var datePickerManager = MyApp.news.datePickerManager;
+    var constants = MyApp.news.constants;
 
     function init(key, controller)
     {
@@ -138,4 +145,4 @@ define(['knockout','jquery','moment','underscore','bootstrap','newsConstants', '
     return {
         init: init
     };
-});
+};

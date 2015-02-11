@@ -1,4 +1,4 @@
-define([],function() 
+module.exports = function() 
 {
 	// does not include text contained directly in the HTML of the templates
 	return {
@@ -50,6 +50,7 @@ define([],function()
 			newsSetupDataLinks: "news-setup-data-links",
 			newsModuleConfigBegin: "news-module-",
 			newsTemplateIdBegin: "news-overview-template-",
+			newsFilterTemplateIdBegin: "news-filter-template-",
 			newsIdBegin: "news-overview-",
 			newsloadingIdBegin: "news-loading-",
 		},
@@ -104,4 +105,4 @@ define([],function()
 			noResult: "No items"
 		}
 	};
-});
+};

@@ -1,5 +1,8 @@
-define(['underscore','jquery'], function(_, $) 
+module.exports = function(MyApp) 
 {
+    var _ = MyApp.vendor.underscore;
+    var $ = MyApp.vendor.jquery;
+
     // Retrieve value associated with supplied key.
     // If key not found, undefined is returned.
     //
@@ -100,4 +103,4 @@ define(['underscore','jquery'], function(_, $)
         getArrayValue: getValueOfProperty,
         getValueOfKey: getValueOfKey
     };
-});
+};

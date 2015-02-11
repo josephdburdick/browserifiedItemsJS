@@ -1,6 +1,12 @@
-define(['knockout','moment','jquery','underscore','newsConstants'],function(ko,Moment,$,_,constants)
+module.exports = function(MyApp)
 {
     'use strict';
+
+    var ko = MyApp.vendor.knockout;
+    var Moment = MyApp.vendor.moment;
+    var $ = MyApp.vendor.jquery;
+    var _ = MyApp.vendor.underscore;
+    var constants = MyApp.news.constants;
 
     // (v)newsEntry
     function NewsEntry(newsData, parent) 
@@ -98,4 +104,4 @@ define(['knockout','moment','jquery','underscore','newsConstants'],function(ko,M
     }
     
     return NewsEntry;
-});
+};

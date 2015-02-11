@@ -1,6 +1,9 @@
-define(['jquery','knockout'],function($, ko) 
+module.exports = function(MyApp) 
 {
     'use strict';
+
+    var ko = MyApp.vendor.knockout;
+    var $ = MyApp.vendor.jquery;
 
     function addTemplateToDom(name, template) 
     {
@@ -50,7 +53,7 @@ define(['jquery','knockout'],function($, ko)
     {
         if (!ko.components.isRegistered(componentNameDayHasEntries))
         {
-            ko.components.register(componentNameDayHasEntries, { require: 'dayWithEvents' });
+            ko.components.register(componentNameDayHasEntries, MyApp.common.components.dayWithEntries);
         }
     }
 
@@ -78,4 +81,4 @@ define(['jquery','knockout'],function($, ko)
         applyKnockoutBindings: applyKnockoutBindings,
         initKnockoutComponents: initKnockoutComponents
     };
-});
+};

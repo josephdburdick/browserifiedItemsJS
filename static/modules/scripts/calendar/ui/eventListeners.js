@@ -1,6 +1,12 @@
-define(['knockout','jquery','moment','underscore','calendarConstants'], function(ko, $, Moment, _, constants) 
+module.exports = function(MyApp) 
  {
     'use strict';
+
+    var ko = MyApp.vendor.knockout;
+    var $ = MyApp.vendor.jquery;
+    var _ = MyApp.vendor.underscore;
+    var Moment = MyApp.vendor.moment;
+    var constants = MyApp.calendar.constants;
 
     function init(key, controller)
     {
@@ -137,4 +143,4 @@ define(['knockout','jquery','moment','underscore','calendarConstants'], function
         init: init,
         refresh: atLeastOneCalendarChecked
     };
-});
+};

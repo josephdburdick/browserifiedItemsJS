@@ -1,7 +1,8 @@
-define(['jquery', 'bootstrap','modernizr','picturefill','bootstrapSelect','jLazyLoad','jVisible','bootstrapDatePicker'], 
-function($) 
+module.exports = function(MyApp) 
 {
     'use strict';
+
+    var $ = MyApp.vendor.jquery;
 /*
     YSM Helpers
 
@@ -2564,4 +2565,4 @@ $(window).load(function(){
     return {
         init : init
     };
-});
+};

@@ -1,6 +1,13 @@
-define(['knockout','moment','underscore', 'jquery','newsEntry','newsConstants'], function(ko,Moment,_,$,NewsEntry,constants) 
+module.exports = function(MyApp) 
 {
 	'use strict';
+
+    var ko = MyApp.vendor.knockout;
+    var Moment = MyApp.vendor.moment;
+    var _ = MyApp.vendor.underscore;
+    var $ = MyApp.vendor.jquery;
+    var NewsEntry = MyApp.news.viewmodel.NewsEntry;
+    var constants = MyApp.news.constants;
 
     // A (v)calendars container contains an array of no, one or more (v)calendar(s).
     function NewsList(key) 
@@ -429,4 +436,4 @@ define(['knockout','moment','underscore', 'jquery','newsEntry','newsConstants'],
     };
 
     return NewsList;
-});
+};

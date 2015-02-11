@@ -1,6 +1,13 @@
-define(['jquery','underscore','dataFacade','layoutFactory','domManager','itemsFactory'], function($, _, facade, LayoutFactory, domManager, ItemsFactory)
+module.exports = function(MyApp)
 {
     'use strict';
+    
+    var $ = MyApp.vendor.jquery;
+    var _ = MyApp.vendor.underscore;
+    var facade = MyApp.common.dataFacade;
+    var LayoutFactory = MyApp.common.LayoutFactory;
+    var domManager = MyApp.common.domManager;
+    var ItemsFactory = MyApp.common.ItemsFactory;
 
     function Controller()
     {
@@ -41,7 +48,7 @@ define(['jquery','underscore','dataFacade','layoutFactory','domManager','itemsFa
           config.searchQuery = settings.searchQuery;
         break;
         case 'news':
-          var constants = require('newsConstants');
+          var constants = MyApp.news.constants;
           controllerReference.errorMessage = constants.error.retrieveDataFail;
           config.key = settings[constants.config.key];
           config.displayStyle = settings[constants.config.displayStyle];
@@ -78,7 +85,7 @@ define(['jquery','underscore','dataFacade','layoutFactory','domManager','itemsFa
         break;
         case 'calendar':
         case 'calendarEvent':
-          var constants = require('calendarConstants');
+          var constants = MyApp.calendar.constants;
           controllerReference.errorMessage = constants.error.retrieveDataFail;
           config.key = settings[constants.config.key];
           config.selectedDate = settings[constants.config.selectedDate];
@@ -287,4 +294,4 @@ define(['jquery','underscore','dataFacade','layoutFactory','domManager','itemsFa
     }
 
     return Controller;
-});
+};
